@@ -3,13 +3,17 @@ public class Main {
 
         System.out.println(StudyProfile.MEDICINE.getProfileName());
 
-        University university1 = new University("1", "Belorussian State University", "BSU", 1929, StudyProfile.PHILOSOPHY);
-        University university2 = new University("2", "Belorussian State University of Transport", "BelSUT", 1953, StudyProfile.TELECOMMUNICATIONS);
+        University university = new University(); // шаблон Builder
+        university.setId("1")
+                  .setFullName("Belorussian State University")
+                  .setShortName("BSU")
+                  .setYearOfFoundation(1920)
+                  .setProfileName(StudyProfile.PHILOSOPHY);
 
         Student student1 = new Student("Vitali Dabryian", "2", 1,99);
         Student student2 = new Student("Anton Ivanich", "1", 2,95);
 
-        System.out.println(university2);
+        System.out.println(university);
         System.out.println(student1);
     }
 }

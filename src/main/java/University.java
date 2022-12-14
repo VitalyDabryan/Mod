@@ -11,7 +11,8 @@ public class University {
         this.yearOfFoundation = yearOfFoundation;
         this.mainProfile = mainProfile;
     }
-
+    public University() {
+    }
     public String getId() {
         return id;
     }
@@ -32,24 +33,24 @@ public class University {
         return mainProfile;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public University setId(String id) {
+        this.id = id; return this;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public University setFullName(String fullName) {
+        this.fullName = fullName; return this;
     }
 
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
+    public University setShortName(String shortName) {
+        this.shortName = shortName; return this;
     }
 
-    public void setYearOfFoundation(int yearOfFoundation) {
-        this.yearOfFoundation = yearOfFoundation;
+    public University setYearOfFoundation(int yearOfFoundation) {
+        this.yearOfFoundation = yearOfFoundation; return this;
     }
 
-    public void setMainProfile(StudyProfile mainProfile) {
-        this.mainProfile = mainProfile;
+    public University setMainProfile(StudyProfile mainProfile) {
+        this.mainProfile = mainProfile; return this;
     }
 
     @Override
@@ -62,4 +63,11 @@ public class University {
                 ", mainProfile=" + mainProfile +
                 '}';
     }
+
+
+    public University setProfileName(StudyProfile mainProfile) {
+        this.mainProfile = mainProfile; return  this;
+    }
+
+
 }
