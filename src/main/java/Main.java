@@ -1,19 +1,50 @@
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Main {
+
     public static void main(String[] args) {
 
-        System.out.println(StudyProfile.MEDICINE.getProfileName());
+        ArrayList<University> universities = new ArrayList<>();
+        ArrayList<Student> students = new ArrayList<>();
+        String id = "";
+        String fullName = "";
+        String shortName = "";
+        double yearOfFoundation = 0.0;
+        StudyProfile mainProfile = null;
+        int countRow = 0;
 
-        University university = new University(); // шаблон Builder
-        university.setId("1")
-                  .setFullName("Belorussian State University")
-                  .setShortName("BSU")
-                  .setYearOfFoundation(1920)
-                  .setProfileName(StudyProfile.PHILOSOPHY);
+        String universityId = "";
+        double currentCourseNumber = 0.0;
+        double avgExamScore = 0.0;
 
-        Student student1 = new Student("Vitali Dabryian", "2", 1,99);
-        Student student2 = new Student("Anton Ivanich", "1", 2,95);
+//     Чтение списка университетов, заполнение коллекции
+       ReadFile.readFileUniversity(universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
+//     Чтение списка студентов, заполнение коллекции
+       ReadFile.readFileStudents(students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
 
-        System.out.println(university);
-        System.out.println(student1);
+       System.out.println("Collection of universities:");
+       for (Object o: universities) {
+            System.out.println(o);
+        }
+
+       System.out.println("Collection of students:");
+       for (Object o: students) {
+            System.out.println(o);
+        }
     }
 }

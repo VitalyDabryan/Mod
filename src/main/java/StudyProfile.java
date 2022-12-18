@@ -1,7 +1,9 @@
 public enum StudyProfile {
     MEDICINE("Медицина"),
-    PHILOSOPHY("Философия"),
-    TELECOMMUNICATIONS("Телекоммуникации");
+    MATHEMATICS("Математика"),
+    PHYSICS ("Физика"),
+    LINGUISTICS ("Лингвистика");
+
     private String profileName;
     StudyProfile(String profileName){
         this.profileName = profileName;

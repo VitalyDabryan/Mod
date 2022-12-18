@@ -1,10 +1,11 @@
 public class University {
     String id;
     String fullName;
-    String shortName; int yearOfFoundation;
+    String shortName;
+    double yearOfFoundation;
     StudyProfile mainProfile;
 
-    public University(String id, String fullName, String shortName, int yearOfFoundation, StudyProfile mainProfile) {
+    public University(String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
         this.fullName = fullName;
         this.shortName = shortName;
@@ -25,7 +26,7 @@ public class University {
         return shortName;
     }
 
-    public int getYearOfFoundation() {
+    public double getYearOfFoundation() {
         return yearOfFoundation;
     }
 
@@ -70,4 +71,6 @@ public class University {
     }
 
 
+    public void add(University university) {
+    }
 }

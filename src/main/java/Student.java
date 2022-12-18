@@ -1,9 +1,10 @@
 public class Student {
-    String fullName; String universityId;
-    int currentCourseNumber;
-    float avgExamScore;
+    String fullName;
+    String universityId;
+    double currentCourseNumber;
+    double avgExamScore;
 
-    public Student(String fullName, String universityId, int currentCourseNumber, float avgExamScore) {
+    public Student(String fullName, String universityId, double currentCourseNumber, double avgExamScore) {
         this.fullName = fullName;
         this.universityId = universityId;
         this.currentCourseNumber = currentCourseNumber;
@@ -18,11 +19,11 @@ public class Student {
         return universityId;
     }
 
-    public int getCurrentCourseNumber() {
+    public double getCurrentCourseNumber() {
         return currentCourseNumber;
     }
 
-    public float getAvgExamScore() {
+    public double getAvgExamScore() {
         return avgExamScore;
     }
 
