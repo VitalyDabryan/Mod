@@ -12,10 +12,11 @@ import java.util.Iterator;
 
 public class ReadFile {
 
+// Метод чтения списка университетов
     static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
-        String gtr="";
+        String readEnum="";
 
         try {
             inputStream = new FileInputStream
@@ -43,8 +44,8 @@ public class ReadFile {
                 else if (count == 3) shortName = cell.getStringCellValue();
                 else if (count == 4) yearOfFoundation = (double) cell.getNumericCellValue();
                 else if (count == 5) {mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
-                //    System.out.println(StudyProfile.setProfileName(StudyProfile.valueOf(cell.getStringCellValue())));
-                    }
+                    readEnum(mainProfile);
+                }
             }
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
             if (countRow > 0) universities.add(university); // добавляем в коллекцию universities новую запись
@@ -52,12 +53,13 @@ public class ReadFile {
         }
     }
 
+    // Метод чтения из файла списка студентов
     static void readFileStudents(ArrayList<Student> students, String fullName, int countRow, String universityId, double currentCourseNumber, double avgExamScore) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
 
         try {
-            inputStream = new FileInputStream("C:\\Users\\100nout\\Downloads\\universityInfo.xlsx");
+            inputStream = new FileInputStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
             workBook = new XSSFWorkbook(inputStream);
         } catch (
                 IOException e) {
@@ -86,5 +88,12 @@ public class ReadFile {
             if (countRow > 0) students.add(student); // добавляем в коллекцию students новую запись
             countRow++;
         }
+    }
+
+    // Метод чтения элементов Enum
+    static void readEnum(StudyProfile mainProfile) {
+        String readEnum;
+        readEnum = mainProfile.getProfileName();
+        System.out.println(readEnum);
     }
 }
