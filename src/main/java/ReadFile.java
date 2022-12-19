@@ -44,7 +44,7 @@ public class ReadFile {
                 else if (count == 3) shortName = cell.getStringCellValue();
                 else if (count == 4) yearOfFoundation = (double) cell.getNumericCellValue();
                 else if (count == 5) {mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
-                    readEnum(mainProfile);
+                    mainProfile = readEnum(mainProfile);
                 }
             }
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
@@ -91,9 +91,10 @@ public class ReadFile {
     }
 
     // Метод чтения элементов Enum
-    static void readEnum(StudyProfile mainProfile) {
+    static StudyProfile readEnum(StudyProfile mainProfile) {
         String readEnum;
         readEnum = mainProfile.getProfileName();
         System.out.println(readEnum);
+        return mainProfile;
     }
 }
