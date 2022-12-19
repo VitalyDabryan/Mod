@@ -4,6 +4,7 @@ public class University {
     String shortName;
     double yearOfFoundation;
     StudyProfile mainProfile;
+    String profileName;
 
     public University(String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
@@ -13,6 +14,16 @@ public class University {
         this.mainProfile = mainProfile;
     }
     public University() {
+    }
+
+    public static StudyProfile fromString (String profileName) {
+        if (profileName != null) {
+            for (StudyProfile pt : StudyProfile.values())
+                if (profileName.equalsIgnoreCase(pt.profileName)) {
+                    return pt;
+                }
+        }
+        throw new IllegalArgumentException("No such value");
     }
     public String getId() {
         return id;
@@ -71,6 +82,5 @@ public class University {
     }
 
 
-    public void add(University university) {
-    }
+
 }

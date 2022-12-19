@@ -17,7 +17,15 @@ import java.util.Iterator;
 
 public class Main {
 
+    private Main() {
+        InputStream image = this.getClass().getClassLoader().getResourceAsStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources");
+        InputStream config = ClassLoader.getSystemResourceAsStream("config.xml");
+    }
+
     public static void main(String[] args) {
+
+//        InputStream image = this.getClass().getClassLoader().getResourceAsStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources");
+//        InputStream config = ClassLoader.getSystemResourceAsStream("config.xml");
 
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
@@ -33,9 +41,11 @@ public class Main {
         double avgExamScore = 0.0;
 
 //     Чтение списка университетов, заполнение коллекции
-       ReadFile.readFileUniversity(universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
+       ReadFile.readFileUniversity
+               (universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
 //     Чтение списка студентов, заполнение коллекции
-       ReadFile.readFileStudents(students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
+       ReadFile.readFileStudents
+               (students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
 
        System.out.println("Collection of universities:");
        for (Object o: universities) {

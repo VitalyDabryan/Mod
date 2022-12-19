@@ -15,9 +15,11 @@ public class ReadFile {
     static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
+        String gtr="";
 
         try {
-            inputStream = new FileInputStream("C:\\Users\\100nout\\Downloads\\universityInfo.xlsx");
+            inputStream = new FileInputStream
+                    ("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
             workBook = new XSSFWorkbook(inputStream);
         } catch (
                 IOException e) {
@@ -40,7 +42,9 @@ public class ReadFile {
                 else if (count == 2) fullName = cell.getStringCellValue();
                 else if (count == 3) shortName = cell.getStringCellValue();
                 else if (count == 4) yearOfFoundation = (double) cell.getNumericCellValue();
-                else if (count == 5) mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
+                else if (count == 5) {mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
+                //    System.out.println(StudyProfile.setProfileName(StudyProfile.valueOf(cell.getStringCellValue())));
+                    }
             }
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
             if (countRow > 0) universities.add(university); // добавляем в коллекцию universities новую запись
