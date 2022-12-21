@@ -1,4 +1,4 @@
-public class University {
+public class University implements Comparable<University> {
     String id;
     String fullName;
     String shortName;
@@ -82,5 +82,8 @@ public class University {
     }
 
 
-
+    @Override
+    public int compareTo(University o) {
+        return 0;
+    }
 }

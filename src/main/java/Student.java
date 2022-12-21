@@ -1,4 +1,4 @@
-public class Student {
+public class Student implements Comparable<Student> {
     String fullName;
     String universityId;
     double currentCourseNumber;
@@ -51,5 +51,10 @@ public class Student {
                 ", currentCourseNumber=" + currentCourseNumber +
                 ", avgExamScore=" + avgExamScore +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        return 0;
     }
 }
