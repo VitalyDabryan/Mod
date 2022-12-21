@@ -8,6 +8,7 @@ public enum StudyProfile {
     StudyProfile(String profileName){
         this.profileName = profileName;
     }
+
     public String getProfileName(){ return profileName;}
 
     public static StudyProfile setProfileName(StudyProfile valueOf) {

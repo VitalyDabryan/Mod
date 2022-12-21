@@ -1,31 +1,11 @@
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 public class Main {
 
     private Main() {
-        InputStream image = this.getClass().getClassLoader().getResourceAsStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources");
-        InputStream config = ClassLoader.getSystemResourceAsStream("config.xml");
     }
 
     public static void main(String[] args) {
-
-//        InputStream image = this.getClass().getClassLoader().getResourceAsStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources");
-//        InputStream config = ClassLoader.getSystemResourceAsStream("config.xml");
 
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
@@ -47,14 +27,22 @@ public class Main {
        ReadFile.readFileStudents
                (students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
 
+       UniversitiesComparators myUniversityComparator = UniversitiesComparators.UniShortNameComparator;
        System.out.println("Collection of universities:");
+
+       universities = SelectComparator.selectUniversitiesComparator(universities, myUniversityComparator);
        for (Object o: universities) {
             System.out.println(o);
-        }
+       }
 
+       StudentsComparators myStudentComparator = StudentsComparators.AvgExamScoreComparator;
        System.out.println("Collection of students:");
-       for (Object o: students) {
-            System.out.println(o);
-        }
+       students = SelectComparator.selectStudentComparator(students, myStudentComparator);
+       students.stream()
+                .forEach(System.out::println);
+//       for (Student student : students) {
+//            System.out.println(student);
+//       }
+
     }
 }

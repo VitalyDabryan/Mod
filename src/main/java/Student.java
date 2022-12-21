@@ -1,4 +1,6 @@
-public class Student {
+import java.util.Objects;
+
+public class Student implements Comparator<Student> {
     String fullName;
     String universityId;
     double currentCourseNumber;
@@ -39,7 +41,7 @@ public class Student {
         this.currentCourseNumber = currentCourseNumber;
     }
 
-    public void setAvgExamScore(float avgExamScore) {
+    public void setAvgExamScore(double avgExamScore) {
         this.avgExamScore = avgExamScore;
     }
 
@@ -51,5 +53,26 @@ public class Student {
                 ", currentCourseNumber=" + currentCourseNumber +
                 ", avgExamScore=" + avgExamScore +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student student)) return false;
+        return Double.compare(student.getCurrentCourseNumber(),
+                getCurrentCourseNumber()) == 0 && Double.compare(student.getAvgExamScore(),
+                getAvgExamScore()) == 0 && getFullName().equals(student.getFullName()) &&
+                getUniversityId().equals(student.getUniversityId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFullName(), getUniversityId(),
+                getCurrentCourseNumber(), getAvgExamScore());
+    }
+
+    @Override
+    public int compare(Student o1, Student o2) {
+        return 0;
     }
 }

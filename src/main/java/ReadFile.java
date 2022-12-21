@@ -44,7 +44,7 @@ public class ReadFile {
                 else if (count == 3) shortName = cell.getStringCellValue();
                 else if (count == 4) yearOfFoundation = (double) cell.getNumericCellValue();
                 else if (count == 5) {mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
-                    mainProfile = readEnum(mainProfile);
+  //                  mainProfile = readEnum(mainProfile);
                 }
             }
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
@@ -80,11 +80,11 @@ public class ReadFile {
 //    заполнение значений полей
                 if (count == 1) fullName = cell.getStringCellValue();
                 else if (count == 2) universityId = cell.getStringCellValue();
-                else if (count == 3) currentCourseNumber = (double) cell.getNumericCellValue();
+                else if (count == 3) currentCourseNumber =  cell.getNumericCellValue();
                 else if (count == 4) avgExamScore = (double) cell.getNumericCellValue();
 
             }
-            Student student = new Student(universityId, fullName, currentCourseNumber, avgExamScore);
+            Student student = new Student(universityId, fullName, currentCourseNumber,  avgExamScore);
             if (countRow > 0) students.add(student); // добавляем в коллекцию students новую запись
             countRow++;
         }
@@ -94,7 +94,7 @@ public class ReadFile {
     static StudyProfile readEnum(StudyProfile mainProfile) {
         String readEnum;
         readEnum = mainProfile.getProfileName();
-        System.out.println(readEnum);
+ //       System.out.println(readEnum);
         return mainProfile;
     }
 }

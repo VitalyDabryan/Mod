@@ -1,4 +1,6 @@
-public class University {
+import java.util.Objects;
+
+public class University implements Comparator<University> {
     String id;
     String fullName;
     String shortName;
@@ -83,4 +85,27 @@ public class University {
 
 
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof University that)) return false;
+        return Double.compare(that.getYearOfFoundation(), getYearOfFoundation()) == 0 &&
+                getId().equals(that.getId()) &&
+                getFullName().equals(that.getFullName()) &&
+                getShortName().equals(that.getShortName()) &&
+                getMainProfile() == that.getMainProfile() &&
+                profileName.equals(that.profileName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFullName(), getShortName(), getYearOfFoundation(), getMainProfile(), profileName);
+    }
+
+
+    @Override
+    public int compare(University o1, University o2) {
+        return 0;
+    }
 }
