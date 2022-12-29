@@ -62,7 +62,22 @@ public class Main {
                         break;
                     default: break;
                 }
-            System.out.println("Make your choice again!");
+            if (choiseUniversity >=0 && choiseUniversity <=5) System.out.println("Make your choice again!");
+        }
+
+// Сохранить  экземпляры компараторов Universities в переменные с типом интерфейса компаратора
+        ArrayList<University> universitiesId = new ArrayList<>();
+        ArrayList<University> universitiesFullName = new ArrayList<>();
+        ArrayList<University> universitiesShortName = new ArrayList<>();
+        ArrayList<University> universitiesYearOfFoundation = new ArrayList<>();
+        ArrayList<University> universitiesProfileName = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            if (i == 0) universitiesId = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.IdComparator);
+            if (i == 1) universitiesFullName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniFullNameComparator);
+            if (i == 2) universitiesShortName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniShortNameComparator);
+            if (i == 3) universitiesYearOfFoundation = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniYearOfFoundationComparator);
+            if (i == 4) universitiesProfileName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniProfileNameComparator);
         }
 
        System.out.println("Collection of universities:");
@@ -72,8 +87,22 @@ public class Main {
             System.out.println(o);
        }
 
+
+
 //   выбираем тип компаратора для списка студентов
        printMenuStudents();
+
+        ArrayList<Student> studentsUniId = new ArrayList<>();
+        ArrayList<Student> studentsStudFullName = new ArrayList<>();
+        ArrayList<Student> studentsCorceNumber = new ArrayList<>();
+        ArrayList<Student> studentsAvgExamScore = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            if (i == 0) studentsUniId = SelectComparator.selectStudentComparator(students, StudentsComparators.UniversityIdComparator);
+            if (i == 1) studentsStudFullName = SelectComparator.selectStudentComparator(students, StudentsComparators.FullNameComparator);
+            if (i == 2) studentsCorceNumber = SelectComparator.selectStudentComparator(students, StudentsComparators.CurrentCourseNumberComparator);
+            if (i == 3) studentsAvgExamScore = SelectComparator.selectStudentComparator(students, StudentsComparators.AvgExamScoreComparator);
+        }
 
         int choiseStudents = 8;
         StudentsComparators myStudentComparator = null;
@@ -101,7 +130,7 @@ public class Main {
                     break;
                 default: break;
             }
-            System.out.println("Make your choice again!");
+            if (choiseStudents >=0 && choiseStudents <=4) System.out.println("Make your choice again!");
         }
 
        System.out.println("Collection of students:");

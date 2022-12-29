@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Student implements Comparator<Student> {
+public class Student implements StudComparator<Student> {
     String fullName;
     String universityId;
     double currentCourseNumber;

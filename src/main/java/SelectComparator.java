@@ -28,7 +28,7 @@ final public class SelectComparator {
             Collections.sort(students, new UniversityIdComparator());
         } else
         if (myStudentComparator == StudentsComparators.AvgExamScoreComparator) {
-            Collections.sort(students, new AvgExamScoreComparator());
+            Collections.sort(students, new AvgExamScoreComparator().reversed());
         } else
         if (myStudentComparator == StudentsComparators.CurrentCourseNumberComparator) {
             Collections.sort(students, new CurrentCourseNumberComparator());
