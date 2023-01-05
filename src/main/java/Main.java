@@ -1,9 +1,6 @@
 import java.util.*;
 
-public class Main {
-
-    private Main() {
-    }
+final public class Main {
 
     public static void main(String[] args) {
 
@@ -62,7 +59,7 @@ public class Main {
                         break;
                     default: break;
                 }
-            if (choiseUniversity >=0 && choiseUniversity <=5) System.out.println("Make your choice again!");
+            if (choiseUniversity > 5) System.out.println("Make your choice again!");
         }
 
 // Сохранить  экземпляры компараторов Universities в переменные с типом интерфейса компаратора
@@ -83,10 +80,11 @@ public class Main {
        System.out.println("Collection of universities:");
 
        if (myUniversityComparator != null) universities = SelectComparator.selectUniversitiesComparator(universities, myUniversityComparator);
-       for (Object o: universities) {
-            System.out.println(o);
-       }
-
+//       for (Object o: universities) {
+//            System.out.println(o);
+//       }
+        universities.stream()
+                .forEach(System.out::println);
 
 
 //   выбираем тип компаратора для списка студентов
@@ -96,7 +94,7 @@ public class Main {
         ArrayList<Student> studentsStudFullName = new ArrayList<>();
         ArrayList<Student> studentsCorceNumber = new ArrayList<>();
         ArrayList<Student> studentsAvgExamScore = new ArrayList<>();
-
+// Сохранить  экземпляры компараторов Student в переменные с типом интерфейса компаратора
         for (int i = 0; i < 4; i++) {
             if (i == 0) studentsUniId = SelectComparator.selectStudentComparator(students, StudentsComparators.UniversityIdComparator);
             if (i == 1) studentsStudFullName = SelectComparator.selectStudentComparator(students, StudentsComparators.FullNameComparator);
@@ -130,7 +128,7 @@ public class Main {
                     break;
                 default: break;
             }
-            if (choiseStudents >=0 && choiseStudents <=4) System.out.println("Make your choice again!");
+            if (choiseStudents > 4) System.out.println("Make your choice again!");
         }
 
        System.out.println("Collection of students:");

@@ -16,7 +16,6 @@ public class ReadFile {
     static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
-        String readEnum="";
 
         try {
             inputStream = new FileInputStream
@@ -43,9 +42,7 @@ public class ReadFile {
                 else if (count == 2) fullName = cell.getStringCellValue();
                 else if (count == 3) shortName = cell.getStringCellValue();
                 else if (count == 4) yearOfFoundation = (double) cell.getNumericCellValue();
-                else if (count == 5) {mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
-  //                  mainProfile = readEnum(mainProfile);
-                }
+                else if (count == 5) mainProfile = StudyProfile.valueOf(cell.getStringCellValue());
             }
             University university = new University(id, fullName, shortName, yearOfFoundation, mainProfile);
             if (countRow > 0) universities.add(university); // добавляем в коллекцию universities новую запись
@@ -90,11 +87,4 @@ public class ReadFile {
         }
     }
 
-    // Метод чтения элементов Enum
-    static StudyProfile readEnum(StudyProfile mainProfile) {
-        String readEnum;
-        readEnum = mainProfile.getProfileName();
- //       System.out.println(readEnum);
-        return mainProfile;
-    }
-}
+ }
