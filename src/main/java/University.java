@@ -1,10 +1,17 @@
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Objects;
 
 public class University implements StudComparator<University> {
+    @SerializedName("id")
     String id;
-    String fullName;
+    @SerializedName("fullName")
+    public String fullName;
+    @SerializedName("shortName")
     String shortName;
+    @SerializedName("year")
     double yearOfFoundation;
+    @SerializedName("studyProfil")
     StudyProfile mainProfile;
     String profileName;
 

@@ -1,4 +1,13 @@
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import java.lang.reflect.Type;
 import java.util.*;
+
+import static com.microsoft.schemas.vml.CTFormulas.type;
+
 
 final public class Main {
 
@@ -20,12 +29,31 @@ final public class Main {
 //     Чтение списка университетов, заполнение коллекции
        ReadFile.readFileUniversity
                (universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
-//     Чтение списка студентов, заполнение коллекции
+
+        String jsonAllUniversity = new Gson().toJson(universities);
+
+        JsonUtil.jsonAllUniversities(universities);
+
+
+
+
+//        List<University> listUniversityDes = new Gson().fromJson(jsonAllUniversity, (Type) universities);
+//        System.out.println(listUniversityDes.toString());
+
+//        for (Object o: universities) {
+//            String jsonFullName = new Gson().toJson(University.fullName);
+//            System.out.println(o);
+//       }
+
+
+
+
+       //     Чтение списка студентов, заполнение коллекции
        ReadFile.readFileStudents
                (students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
 
 //   выбираем тип компаратора для списка универстетов
-
+/*
         printMenuUniversity();
         UniversitiesComparators myUniversityComparator = null;
 
@@ -138,8 +166,9 @@ final public class Main {
 //       for (Student student : students) {
 //            System.out.println(student);
 //       }
-
+*/
     }
+
 
     private static void printMenuUniversity() {
         System.out.println("Choose a way to sort the list of universities");
