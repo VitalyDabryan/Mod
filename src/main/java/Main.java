@@ -38,13 +38,35 @@ final public class Main {
         int kindOfUniversities = 3;
         int kindOfStudents = 2;
 
-        JsonUtil.jsonAllUniversities(universities); // серилизация коллекции университетов
+        JsonUtil.jsonAllUniversities(universities); // сериализация коллекции университетов
 
-        JsonUtil.jsonAllStudents(students); // серилизация коллекции студентов
+        JsonUtil.jsonAllStudents(students); // сериализация коллекции студентов
 
-        JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities); // серилизация элемента коллекции университетов
+        JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities); // сериализация элемента коллекции университетов
 
-        JsonUtil.jsonKindOfStudents(students, kindOfStudents);  // серилизация элемента коллекции студентов
+        JsonUtil.jsonKindOfStudents(students, kindOfStudents);  // сериализация элемента коллекции студентов
+
+        // Десериализация коллекции Университетов
+        String jsonAllUniversities = JsonUtil.jsonAllUniversities(universities);
+        List<University> outputListUniversity = JsonUtil.jsonDeserializerAllUniversities(jsonAllUniversities);
+
+        // Десериализация коллекции Студентов
+        String jsonAllStudents = JsonUtil.jsonAllStudents(students);
+        List<Student> outputListStudents = JsonUtil.jsonDeserializerAllStudents(jsonAllStudents);
+
+        // Десериализация объекта списка университетов
+        String jsonKindOfUniversities = JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities);
+        University jsonDeserializerKindOfUniversities = JsonUtil.jsonDeserializerKindOfUniversities(jsonKindOfUniversities);
+
+        // Десериализация объекта списка студентов
+        String jsonKindOfStudents = JsonUtil.jsonKindOfStudents(students, kindOfStudents);
+        Student jsonDeserializerKindOfStudents = JsonUtil.jsonDeserializerKindOfStudents(jsonKindOfStudents);
+
+        System.out.println("Список университетов" + outputListUniversity);
+        System.out.println("Список студентов" + outputListStudents);
+        System.out.println(jsonKindOfStudents);
+        System.out.println(jsonDeserializerKindOfUniversities);
+        System.out.println(jsonDeserializerKindOfStudents);
 
 
 //   выбираем тип компаратора для списка универстетов
@@ -164,7 +186,14 @@ final public class Main {
 */
     }
 
-     private static void printMenuUniversity() {
+    private static List<University> jsonDeserializerAllUniversities(String jsonAllUniversities) {
+        Type listOfMyClassObject = new TypeToken<ArrayList<University>>() {}.getType();
+        Gson gson = new Gson();
+        List<University> outputList = gson.fromJson(jsonAllUniversities, listOfMyClassObject);
+        return outputList;
+    }
+
+    private static void printMenuUniversity() {
         System.out.println("Choose a way to sort the list of universities");
         System.out.println("1. Sorting by universities id");
         System.out.println("2. Sorting by full name of universities");
