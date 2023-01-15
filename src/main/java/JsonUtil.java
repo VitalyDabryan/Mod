@@ -1,31 +1,29 @@
 import com.google.gson.*;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class JsonUtil implements JsonSerializer<University>, JsonDeserializer<University>  {
-    public JsonElement serialize(University src, Type type,
-                                 JsonSerializationContext context) {
-        JsonObject object = new JsonObject();
-        object.addProperty("id", src.id);
-        object.addProperty("fullName", src.fullName);
-        object.addProperty("year", src.yearOfFoundation);
-        System.out.println(object);
-        return object;
-    }
+public class JsonUtil {
     static void jsonAllUniversities(ArrayList<University> universities) {
         String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
                 create().toJson(universities);
         System.out.println(json);
     }
 
-//    @Override
-//    public JsonElement serialize(University university, Type type, JsonSerializationContext jsonSerializationContext) {
-//        return null;
-//    }
-
-    @Override
-    public University deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
-        return null;
+    static void jsonKindOfUniversities(ArrayList<University> universities, int kindOfUniversities) {
+        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
+                create().toJson(universities.get(kindOfUniversities));
+        System.out.println(json);
     }
+
+    static void jsonAllStudents(ArrayList<Student> students) {
+        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
+                create().toJson(students);
+        System.out.println(json);
+    }
+
+    static void jsonKindOfStudents(ArrayList<Student> students, int kindOfStudents) {
+        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
+                create().toJson(students.get(kindOfStudents));
+        System.out.println(json);
+    }
+
 }

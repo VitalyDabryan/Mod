@@ -2,6 +2,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -30,27 +31,21 @@ final public class Main {
        ReadFile.readFileUniversity
                (universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
 
-        String jsonAllUniversity = new Gson().toJson(universities);
-
-        JsonUtil.jsonAllUniversities(universities);
-
-
-
-
-//        List<University> listUniversityDes = new Gson().fromJson(jsonAllUniversity, (Type) universities);
-//        System.out.println(listUniversityDes.toString());
-
-//        for (Object o: universities) {
-//            String jsonFullName = new Gson().toJson(University.fullName);
-//            System.out.println(o);
-//       }
-
-
-
-
        //     Чтение списка студентов, заполнение коллекции
        ReadFile.readFileStudents
                (students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
+
+        int kindOfUniversities = 3;
+        int kindOfStudents = 2;
+
+        JsonUtil.jsonAllUniversities(universities); // серилизация коллекции университетов
+
+        JsonUtil.jsonAllStudents(students); // серилизация коллекции студентов
+
+        JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities); // серилизация элемента коллекции университетов
+
+        JsonUtil.jsonKindOfStudents(students, kindOfStudents);  // серилизация элемента коллекции студентов
+
 
 //   выбираем тип компаратора для списка универстетов
 /*
@@ -169,8 +164,7 @@ final public class Main {
 */
     }
 
-
-    private static void printMenuUniversity() {
+     private static void printMenuUniversity() {
         System.out.println("Choose a way to sort the list of universities");
         System.out.println("1. Sorting by universities id");
         System.out.println("2. Sorting by full name of universities");
