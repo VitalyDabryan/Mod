@@ -38,13 +38,13 @@ final public class Main {
         int kindOfUniversities = 3;
         int kindOfStudents = 2;
 
-        JsonUtil.jsonAllUniversities(universities); // сериализация коллекции университетов
+        System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
 
-        JsonUtil.jsonAllStudents(students); // сериализация коллекции студентов
+        System.out.println(JsonUtil.jsonAllStudents(students)); // сериализация коллекции студентов
 
-        JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities); // сериализация элемента коллекции университетов
+        System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities)); // сериализация элемента коллекции университетов
 
-        JsonUtil.jsonKindOfStudents(students, kindOfStudents);  // сериализация элемента коллекции студентов
+        System.out.println(JsonUtil.jsonKindOfStudents(students, kindOfStudents));  // сериализация элемента коллекции студентов
 
         // Десериализация коллекции Университетов
         String jsonAllUniversities = JsonUtil.jsonAllUniversities(universities);
@@ -64,7 +64,6 @@ final public class Main {
 
         System.out.println("Список университетов" + outputListUniversity);
         System.out.println("Список студентов" + outputListStudents);
-        System.out.println(jsonKindOfStudents);
         System.out.println(jsonDeserializerKindOfUniversities);
         System.out.println(jsonDeserializerKindOfStudents);
 
@@ -184,13 +183,6 @@ final public class Main {
 //            System.out.println(student);
 //       }
 */
-    }
-
-    private static List<University> jsonDeserializerAllUniversities(String jsonAllUniversities) {
-        Type listOfMyClassObject = new TypeToken<ArrayList<University>>() {}.getType();
-        Gson gson = new Gson();
-        List<University> outputList = gson.fromJson(jsonAllUniversities, listOfMyClassObject);
-        return outputList;
     }
 
     private static void printMenuUniversity() {
