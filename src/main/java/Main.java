@@ -3,6 +3,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -67,7 +68,17 @@ final public class Main {
         System.out.println(jsonDeserializerKindOfUniversities);
         System.out.println(jsonDeserializerKindOfStudents);
 
+        for (kindOfUniversities=0; kindOfUniversities < universities.size(); kindOfUniversities++) {
+            System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities));
 
+       }
+//                .new GsonBuilder().setPrettyPrinting().disableHtmlEscaping()
+//                .create().toJson(universities.get(kindOfUniversities))
+//                .forEach(System.out::println);
+//
+//        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
+//                create().toJson(universities.get(kindOfUniversities));
+    //            .JsonUtil.jsonDeserializerKindOfUniversities(jsonKindOfUniversities)
 //   выбираем тип компаратора для списка универстетов
 /*
         printMenuUniversity();
