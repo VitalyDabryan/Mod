@@ -11,7 +11,7 @@ public class Statistics {
         this.avgExamScore = avgExamScore;
         this.amountOfStudentsByProfile = amountOfStudentsByProfile;
         this.amountOfUniversitiesByProfile = amountOfUniversitiesByProfile;
-        UniversitiesFullName = universitiesFullName;
+        this.UniversitiesFullName = universitiesFullName;
     }
 
     public StudyProfile getMainProfile() {

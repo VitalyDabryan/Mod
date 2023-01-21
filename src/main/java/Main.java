@@ -1,14 +1,4 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
-import org.apache.commons.collections4.CollectionUtils;
-
-import java.lang.reflect.Type;
 import java.util.*;
-
-import static com.microsoft.schemas.vml.CTFormulas.type;
 
 
 final public class Main {
@@ -72,14 +62,99 @@ final public class Main {
             System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities));
 
        }
-//                .new GsonBuilder().setPrettyPrinting().disableHtmlEscaping()
-//                .create().toJson(universities.get(kindOfUniversities))
-//                .forEach(System.out::println);
-//
-//        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
-//                create().toJson(universities.get(kindOfUniversities));
-    //            .JsonUtil.jsonDeserializerKindOfUniversities(jsonKindOfUniversities)
-//   выбираем тип компаратора для списка универстетов
+
+        // соберем статистику по списку студентов:
+
+        System.out.println("Cписок студентов со средней оценкой выше 4");
+        ArrayList <Student> studentsAvgExamScoreMoreFour = new ArrayList<>();
+        for (Student student: students) {
+             if (student.getAvgExamScore() > 4) {
+                 studentsAvgExamScoreMoreFour.add(student);
+             }
+        }
+        studentsAvgExamScoreMoreFour.stream()
+                .forEach(System.out::println);
+
+        System.out.println("Статистика по направлениям обучения:");
+        ArrayList<Statistics> statistics = new ArrayList<>();
+        StudyProfile mainStatProfile = StudyProfile.PHYSICS;
+        double[] statAvgExamScore = {0.0, 0.0, 0.0, 0.0};
+        int[] amountOfStudentsByProfile = {0, 0, 0, 0};
+        int[] amountOfUniversitiesByProfile = {0, 0, 0, 0};
+        String universitiesFullName = "";
+
+        Statistics statistic = new Statistics(StudyProfile.PHYSICS, statAvgExamScore[0],
+                amountOfStudentsByProfile[0], amountOfUniversitiesByProfile[0], universitiesFullName);
+        statistics.add(statistic);
+
+        Statistics statistic1 = new Statistics(StudyProfile.MEDICINE, statAvgExamScore[1],
+                amountOfStudentsByProfile[1], amountOfUniversitiesByProfile[1], universitiesFullName);
+        statistics.add(statistic1);
+
+        Statistics statistic2 = new Statistics(StudyProfile.MATHEMATICS, statAvgExamScore[2],
+                amountOfStudentsByProfile[2], amountOfUniversitiesByProfile[2], universitiesFullName);
+        statistics.add(statistic2);
+
+        Statistics statistic3 = new Statistics(StudyProfile.LINGUISTICS, statAvgExamScore[3],
+                amountOfStudentsByProfile[3], amountOfUniversitiesByProfile[3], universitiesFullName);
+        statistics.add(statistic3);
+
+        for (University university: universities){
+            if (university.getMainProfile() == StudyProfile.PHYSICS) {
+                amountOfUniversitiesByProfile[0]++;
+                for (Student student : students) {
+                    if (university.getId().equals(student.getUniversityId())) {
+                        statAvgExamScore[0] = statAvgExamScore[0] + student.getAvgExamScore();
+                        ++amountOfStudentsByProfile[0];
+
+                    }
+                }
+            }
+
+            if (university.getMainProfile() == StudyProfile.MEDICINE) {
+                amountOfUniversitiesByProfile[1]++;
+                for (Student student : students) {
+                    if (university.getId().equals(student.getUniversityId())) {
+                        statAvgExamScore[1] = statAvgExamScore[1] + student.getAvgExamScore();
+                        ++amountOfStudentsByProfile[1];
+
+                    }
+                }
+            }
+            statistic = new Statistics(StudyProfile.PHYSICS,
+                    statAvgExamScore[0] / amountOfStudentsByProfile[0],
+                    amountOfStudentsByProfile[0],
+                    amountOfUniversitiesByProfile[0],
+                    universitiesFullName);
+            statistics.set(0, statistic);
+
+            statistic = new Statistics(StudyProfile.MEDICINE,
+                    statAvgExamScore[1] / amountOfStudentsByProfile[1],
+                    amountOfStudentsByProfile[1],
+                    amountOfUniversitiesByProfile[1],
+                    universitiesFullName);
+            statistics.set(1, statistic);
+
+//            if (university.getMainProfile() == StudyProfile.MEDICINE)  {
+//                for (Student student: students) {
+//                    if (university.getId().equals(student.getUniversityId())) {
+//                        statistic = new Statistics(StudyProfile.MEDICINE, statAvgExamScore[1],
+//                                ++amountOfStudentsByProfile[1], ++amountOfUniversitiesByProfile[1], universitiesFullName);
+//                        statistics.set(1, statistic);
+//                    }
+//                }
+//            }
+        }
+
+        statistics.stream()
+                .forEach(System.out::println);
+
+//        statistics = ProcessingCollections.makeStatistic(universities, students);
+
+        WriteFile.writeFile(students);
+
+
+
 /*
         printMenuUniversity();
         UniversitiesComparators myUniversityComparator = null;

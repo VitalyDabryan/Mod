@@ -2,7 +2,7 @@ import java.util.Comparator;
 import org.apache.commons.lang3.StringUtils;
 import java.lang.String;
 
-import static com.twelvemonkeys.lang.StringUtil.valueOf;
+
 
 public class UniProfileNameComparator implements Comparator<University> {
 
