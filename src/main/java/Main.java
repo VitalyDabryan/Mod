@@ -66,91 +66,16 @@ final public class Main {
         // соберем статистику по списку студентов:
 
         System.out.println("Cписок студентов со средней оценкой выше 4");
-        ArrayList <Student> studentsAvgExamScoreMoreFour = new ArrayList<>();
-        for (Student student: students) {
-             if (student.getAvgExamScore() > 4) {
-                 studentsAvgExamScoreMoreFour.add(student);
-             }
-        }
-        studentsAvgExamScoreMoreFour.stream()
-                .forEach(System.out::println);
+        ProcessingCollections.listSudentAvgScoreMoreFoure(students);
 
         System.out.println("Статистика по направлениям обучения:");
         ArrayList<Statistics> statistics = new ArrayList<>();
-        StudyProfile mainStatProfile = StudyProfile.PHYSICS;
-        double[] statAvgExamScore = {0.0, 0.0, 0.0, 0.0};
-        int[] amountOfStudentsByProfile = {0, 0, 0, 0};
-        int[] amountOfUniversitiesByProfile = {0, 0, 0, 0};
-        String universitiesFullName = "";
 
-        Statistics statistic = new Statistics(StudyProfile.PHYSICS, statAvgExamScore[0],
-                amountOfStudentsByProfile[0], amountOfUniversitiesByProfile[0], universitiesFullName);
-        statistics.add(statistic);
-
-        Statistics statistic1 = new Statistics(StudyProfile.MEDICINE, statAvgExamScore[1],
-                amountOfStudentsByProfile[1], amountOfUniversitiesByProfile[1], universitiesFullName);
-        statistics.add(statistic1);
-
-        Statistics statistic2 = new Statistics(StudyProfile.MATHEMATICS, statAvgExamScore[2],
-                amountOfStudentsByProfile[2], amountOfUniversitiesByProfile[2], universitiesFullName);
-        statistics.add(statistic2);
-
-        Statistics statistic3 = new Statistics(StudyProfile.LINGUISTICS, statAvgExamScore[3],
-                amountOfStudentsByProfile[3], amountOfUniversitiesByProfile[3], universitiesFullName);
-        statistics.add(statistic3);
-
-        for (University university: universities){
-            if (university.getMainProfile() == StudyProfile.PHYSICS) {
-                amountOfUniversitiesByProfile[0]++;
-                for (Student student : students) {
-                    if (university.getId().equals(student.getUniversityId())) {
-                        statAvgExamScore[0] = statAvgExamScore[0] + student.getAvgExamScore();
-                        ++amountOfStudentsByProfile[0];
-
-                    }
-                }
-            }
-
-            if (university.getMainProfile() == StudyProfile.MEDICINE) {
-                amountOfUniversitiesByProfile[1]++;
-                for (Student student : students) {
-                    if (university.getId().equals(student.getUniversityId())) {
-                        statAvgExamScore[1] = statAvgExamScore[1] + student.getAvgExamScore();
-                        ++amountOfStudentsByProfile[1];
-
-                    }
-                }
-            }
-            statistic = new Statistics(StudyProfile.PHYSICS,
-                    statAvgExamScore[0] / amountOfStudentsByProfile[0],
-                    amountOfStudentsByProfile[0],
-                    amountOfUniversitiesByProfile[0],
-                    universitiesFullName);
-            statistics.set(0, statistic);
-
-            statistic = new Statistics(StudyProfile.MEDICINE,
-                    statAvgExamScore[1] / amountOfStudentsByProfile[1],
-                    amountOfStudentsByProfile[1],
-                    amountOfUniversitiesByProfile[1],
-                    universitiesFullName);
-            statistics.set(1, statistic);
-
-//            if (university.getMainProfile() == StudyProfile.MEDICINE)  {
-//                for (Student student: students) {
-//                    if (university.getId().equals(student.getUniversityId())) {
-//                        statistic = new Statistics(StudyProfile.MEDICINE, statAvgExamScore[1],
-//                                ++amountOfStudentsByProfile[1], ++amountOfUniversitiesByProfile[1], universitiesFullName);
-//                        statistics.set(1, statistic);
-//                    }
-//                }
-//            }
-        }
+        statistics = ProcessingCollections.StatisticOfStudyProfile(universities, students, statistics);
 
         statistics.stream()
                 .forEach(System.out::println);
-
-//        statistics = ProcessingCollections.makeStatistic(universities, students);
-
+        
         WriteFile.writeFile(students);
 
 
@@ -270,6 +195,9 @@ final public class Main {
 //       }
 */
     }
+
+
+
 
     private static void printMenuUniversity() {
         System.out.println("Choose a way to sort the list of universities");
