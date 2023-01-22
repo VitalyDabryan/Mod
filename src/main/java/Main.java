@@ -68,6 +68,13 @@ final public class Main {
         System.out.println("Cписок студентов со средней оценкой выше 4");
         ProcessingCollections.listSudentAvgScoreMoreFoure(students);
 
+        /*  Статистика по направлениям обучения:
+            - Направление обучения.
+            - Средний бал студентов.
+            - Общее количество студентов по направлению.
+            - Количество профильных университетов.
+            - Самый популярный университет (университет, в котором учится больше всего студентов).
+         */
         System.out.println("Статистика по направлениям обучения:");
         ArrayList<Statistics> statistics = new ArrayList<>();
 
@@ -75,8 +82,9 @@ final public class Main {
 
         statistics.stream()
                 .forEach(System.out::println);
-        
-        WriteFile.writeFile(students);
+
+        // Запись статистики в файл: C:\Users\100nout\Downloads\NewExcelFile.xls
+        WriteFile.writeFile(statistics);
 
 
 

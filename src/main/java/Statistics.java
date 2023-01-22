@@ -3,15 +3,15 @@ public class Statistics {
     double avgExamScore;
     int amountOfStudentsByProfile;
     int amountOfUniversitiesByProfile;
-    String UniversitiesFullName;
+    String mostPopularUniversity;
 
     public Statistics(StudyProfile mainProfile, double avgExamScore, int amountOfStudentsByProfile,
-                      int amountOfUniversitiesByProfile, String universitiesFullName) {
+                      int amountOfUniversitiesByProfile, String mostPopularUniversity) {
         this.mainProfile = mainProfile;
         this.avgExamScore = avgExamScore;
         this.amountOfStudentsByProfile = amountOfStudentsByProfile;
         this.amountOfUniversitiesByProfile = amountOfUniversitiesByProfile;
-        this.UniversitiesFullName = universitiesFullName;
+        this.mostPopularUniversity = mostPopularUniversity;
     }
 
     public StudyProfile getMainProfile() {
@@ -46,12 +46,12 @@ public class Statistics {
         this.amountOfUniversitiesByProfile = amountOfUniversitiesByProfile;
     }
 
-    public String getUniversitiesFullName() {
-        return UniversitiesFullName;
+    public String getMostPopularUniversity() {
+        return mostPopularUniversity;
     }
 
-    public void setUniversitiesFullName(String universitiesFullName) {
-        UniversitiesFullName = universitiesFullName;
+    public void setMostPopularUniversity(String mostPopularUniversity) {
+        this.mostPopularUniversity = mostPopularUniversity;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Statistics {
                 ", avgExamScore=" + avgExamScore +
                 ", amountOfStudentsByProfile=" + amountOfStudentsByProfile +
                 ", amountOfUniversitiesByProfile=" + amountOfUniversitiesByProfile +
-                ", UniversitiesFullName='" + UniversitiesFullName + '\'' +
+                ", mostPopularUniversity='" + mostPopularUniversity + '\'' +
                 '}';
     }
 }

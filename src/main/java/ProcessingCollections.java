@@ -1,12 +1,8 @@
+import org.apache.commons.math3.util.Precision;
 import java.util.ArrayList;
 
 public class ProcessingCollections {
-    ArrayList <Statistics> statistics = new ArrayList<>();
-    StudyProfile mainProfile;
-    double avgExamScore;
-    int amountOfStudentsByProfile;
-    int amountOfUniversitiesByProfile;
-    String UniversitiesFullName;
+
 
     static void listSudentAvgScoreMoreFoure(ArrayList<Student> students) {
         ArrayList <Student> studentsAvgExamScoreMoreFour = new ArrayList<>();
@@ -24,22 +20,24 @@ public class ProcessingCollections {
         double[] statAvgExamScore = {0.0, 0.0, 0.0, 0.0};
         int[] amountOfStudentsByProfile = {0, 0, 0, 0};
         int[] amountOfUniversitiesByProfile = {0, 0, 0, 0};
-        String universitiesFullName = "";
+        String[] mostPopularUniversity = {"", "", "", ""};
+        int[] count = {0, 0, 0, 0};
+        int[] lastCount = {0, 0, 0, 0};
 
         Statistics statistic = new Statistics(StudyProfile.PHYSICS, statAvgExamScore[0],
-                amountOfStudentsByProfile[0], amountOfUniversitiesByProfile[0], universitiesFullName);
+                amountOfStudentsByProfile[0], amountOfUniversitiesByProfile[0], mostPopularUniversity[0]);
         statistics.add(statistic);
 
         Statistics statistic1 = new Statistics(StudyProfile.MEDICINE, statAvgExamScore[1],
-                amountOfStudentsByProfile[1], amountOfUniversitiesByProfile[1], universitiesFullName);
+                amountOfStudentsByProfile[1], amountOfUniversitiesByProfile[1], mostPopularUniversity[1]);
         statistics.add(statistic1);
 
         Statistics statistic2 = new Statistics(StudyProfile.MATHEMATICS, statAvgExamScore[2],
-                amountOfStudentsByProfile[2], amountOfUniversitiesByProfile[2], universitiesFullName);
+                amountOfStudentsByProfile[2], amountOfUniversitiesByProfile[2], mostPopularUniversity[2]);
         statistics.add(statistic2);
 
         Statistics statistic3 = new Statistics(StudyProfile.LINGUISTICS, statAvgExamScore[3],
-                amountOfStudentsByProfile[3], amountOfUniversitiesByProfile[3], universitiesFullName);
+                amountOfStudentsByProfile[3], amountOfUniversitiesByProfile[3], mostPopularUniversity[3]);
         statistics.add(statistic3);
 
         for (University university: universities){
@@ -49,9 +47,11 @@ public class ProcessingCollections {
                     if (university.getId().equals(student.getUniversityId())) {
                         statAvgExamScore[0] = statAvgExamScore[0] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[0];
+                        count[0]++;
+                        if (count[0] > lastCount[0]) mostPopularUniversity[0] = university.getFullName();
 
                     }
-                }
+                } lastCount[0] = count[0]; count[0] = 1;
             }
 
             if (university.getMainProfile() == StudyProfile.MEDICINE) {
@@ -60,9 +60,11 @@ public class ProcessingCollections {
                     if (university.getId().equals(student.getUniversityId())) {
                         statAvgExamScore[1] = statAvgExamScore[1] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[1];
+                        count[1]++;
+                        if (count[1] > lastCount[1]) mostPopularUniversity[1] = university.getFullName();
 
                     }
-                }
+                } lastCount[1] = count[1]; count[1] = 1;
             }
 
             if (university.getMainProfile() == StudyProfile.MATHEMATICS) {
@@ -71,9 +73,11 @@ public class ProcessingCollections {
                     if (university.getId().equals(student.getUniversityId())) {
                         statAvgExamScore[2] = statAvgExamScore[2] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[2];
+                        count[2]++;
+                        if (count[2] > lastCount[2]) mostPopularUniversity[2] = university.getFullName();
 
                     }
-                }
+                } lastCount[2] = count[2]; count[2] = 1;
             }
 
             if (university.getMainProfile() == StudyProfile.LINGUISTICS) {
@@ -82,44 +86,41 @@ public class ProcessingCollections {
                     if (university.getId().equals(student.getUniversityId())) {
                         statAvgExamScore[3] = statAvgExamScore[3] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[3];
+                        count[3]++;
+                        if (count[3] > lastCount[3]) mostPopularUniversity[3] = university.getFullName();
 
                     }
-                }
+                } lastCount[3] = count[3]; count[3] = 1;
             }
 
             statistic = new Statistics(StudyProfile.PHYSICS,
-                    statAvgExamScore[0] / amountOfStudentsByProfile[0],
+                    Precision.round(statAvgExamScore[0] / amountOfStudentsByProfile[0], 3),
                     amountOfStudentsByProfile[0],
                     amountOfUniversitiesByProfile[0],
-                    universitiesFullName);
+                    mostPopularUniversity[0]);
             statistics.set(0, statistic);
 
             statistic = new Statistics(StudyProfile.MEDICINE,
-                    statAvgExamScore[1] / amountOfStudentsByProfile[1],
+                    Precision.round(statAvgExamScore[1] / amountOfStudentsByProfile[1], 3),
                     amountOfStudentsByProfile[1],
                     amountOfUniversitiesByProfile[1],
-                    universitiesFullName);
+                    mostPopularUniversity[1]);
             statistics.set(1, statistic);
 
             statistic = new Statistics(StudyProfile.MATHEMATICS,
-                    statAvgExamScore[2] / amountOfStudentsByProfile[2],
+                    Precision.round(statAvgExamScore[2] / amountOfStudentsByProfile[2], 3),
                     amountOfStudentsByProfile[2],
                     amountOfUniversitiesByProfile[2],
-                    universitiesFullName);
+                    mostPopularUniversity[2]);
             statistics.set(2, statistic);
 
             statistic = new Statistics(StudyProfile.LINGUISTICS,
-                    statAvgExamScore[3] / amountOfStudentsByProfile[3],
+                    Precision.round(statAvgExamScore[3] / amountOfStudentsByProfile[3], 3),
                     amountOfStudentsByProfile[3],
                     amountOfUniversitiesByProfile[3],
-                    universitiesFullName);
+                    mostPopularUniversity[3]);
             statistics.set(3, statistic);
-
-
         }
-
-
-
         return statistics;
     }
 }
