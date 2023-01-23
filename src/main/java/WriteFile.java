@@ -1,70 +1,43 @@
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.*;
-
-
-import java.io.File;
-import java.io.FileInputStream;
+import org.apache.poi.ss.usermodel.*;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import static java.lang.String.valueOf;
-
 
 public class WriteFile {
     public static void writeFile(ArrayList<Statistics> statistics) {
-        String fullName;
-        HSSFSheet sheet = null;
+
         try {
             String filename = "C:\\Users\\100nout\\Downloads\\NewExcelFile.xls";
             HSSFWorkbook workbook = new HSSFWorkbook();
-            sheet = workbook.createSheet("FirstSheet");
-            HSSFRow rowhead = sheet.createRow((short) 0);
-            rowhead.setHeightInPoints(45.0f);
+            HSSFSheet sheet = workbook.createSheet("FirstSheet");
+            HSSFRow rowhead = sheet.createRow( (short)0);
 
-            int numberRow = 1;
-            //          sheet.autoSizeColumn(1);
+            HSSFCellStyle headerStyle = workbook.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
             HSSFFont font = workbook.createFont();
-            font.setFontHeightInPoints((short)24);
-            font.setFontName("Courier New");
-            font.setItalic(true);
-            font.setStrikeout(true);
-// цвет шрифта
-//            font.setColor(new XSSFColor(new java.awt.Color(16,64,255)));
+            font.setFontName("Arial");
+            font.setFontHeightInPoints((short) 8);
+            font.setUnderline((byte) 2);
+            font.setBold(true);
+            headerStyle.setFont(font);
 
-            // Создание стиля с определением в нем шрифта
-            HSSFCellStyle style = workbook.createCellStyle();
-            style.setFont(font);
+            sheet.setColumnWidth(0, 4300);
+            sheet.setColumnWidth(1, 6300);
+            sheet.setColumnWidth(2, 9000);
+            sheet.setColumnWidth(3, 9200);
+            sheet.setColumnWidth(4, 14000);
 
-// Создание ячейки с определением ее стиля
+           // Создание ячейки с определением ее стиля
             HSSFRow row = sheet.createRow(0);
-            HSSFCell cell = row.createCell(1);
-            cell.setCellValue("Тестовый шрифт");
-            cell.setCellStyle(style);
-            font.setBold(true);
+            HSSFCell cell = row.createCell(0);
+       //     headerStyle.setAlignment(ALIGN_CENTER);
+            createHeader(rowhead, headerStyle); // Создание шапки таблицы
 
-            font = workbook.createFont();
-            font.setBold(true);
-
-            style = workbook.createCellStyle();
-            style.setFont(font);
-
-            for (int i = 0; i < 100; i++) {
-                row = sheet.createRow(i);
-                for (int j = 0; j < 100; j++) {
-                    cell = row.createCell((short) 0);
-                    cell.setCellStyle(style);
-                }
-            }
-
-            rowhead.createCell(0).setCellValue("Профиль обучения");
-            rowhead.createCell(1).setCellValue("Средний бал студентов");
-            rowhead.createCell(2).setCellValue("Общее количество студентов по направлению");
-            rowhead.createCell(3).setCellValue("Количество профильных университетов");
-            rowhead.createCell(4).setCellValue("Самый популярный университет");
-
+            // Заполнение таблицы значениями
+            int numberRow = 1;
             for (Statistics statistic : statistics) {
                 row = sheet.createRow((short) numberRow);
                 row.createCell(0).setCellValue(valueOf(statistic.getMainProfile()));
@@ -75,8 +48,6 @@ public class WriteFile {
                 numberRow++;
             }
 
-
-
             FileOutputStream fileOut = new FileOutputStream(filename);
             workbook.write(fileOut);
             fileOut.close();
@@ -85,40 +56,28 @@ public class WriteFile {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-
     }
 
-    private static void setBoldStyle() throws IOException {
-        // получаем файл с диска
-        FileInputStream file = new FileInputStream(new File("C:\\Users\\100nout\\Downloads\\NewExcelFile.xls"));
-        // считываем его в память
-        HSSFWorkbook workbook = new HSSFWorkbook(file);
-        // говорим, что хотим работать с первым листом
-        HSSFSheet sheet = workbook.getSheetAt(0);
+    private static void createHeader(HSSFRow rowhead, HSSFCellStyle headerStyle) {
+        HSSFCell headerCell = rowhead.createCell(0);
+        headerCell.setCellValue("Профиль обучения");
+        headerCell.setCellStyle(headerStyle);
 
-        // создаем шрифт
-        HSSFFont font = workbook.createFont();
-        // указываем, что хотим его видеть жирным
- //       font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-        // создаем стиль для ячейки
-        HSSFCellStyle style = workbook.createCellStyle();
-        // и применяем к этому стилю жирный шрифт
-        style.setFont(font);
+        headerCell = rowhead.createCell(1);
+        headerCell.setCellValue("Средний бал студентов");
+        headerCell.setCellStyle(headerStyle);
 
-        // получаем первую строку листа excel файла
-        Row row = sheet.getRow(0);
-        // проходим по всем ячейкам этой строки
-//        for (int i = 0; i < row.getPhysicalNumberOfCells(); i++) {
-//            // применяем созданный выше стиль к каждой ячейке
-//            row.getCell(i).setCellStyle(style);
-//        }
+        headerCell = rowhead.createCell(2);
+        headerCell.setCellValue("Общее количество студентов по направлению");
+        headerCell.setCellStyle(headerStyle);
 
-        // получаем доступ к excel файлу и обновляем его
-        try (FileOutputStream out = new FileOutputStream(new File("C:\\Users\\100nout\\Downloads\\NewExcelFile1.xls"))) {
-            workbook.write(out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Excel файл успешно обновлен!");
+        headerCell = rowhead.createCell(3);
+        headerCell.setCellValue("Количество профильных университетов");
+        headerCell.setCellStyle(headerStyle);
+
+        headerCell = rowhead.createCell(4);
+        headerCell.setCellValue("Самый популярный университет");
+        headerCell.setCellStyle(headerStyle);
     }
+
 }
