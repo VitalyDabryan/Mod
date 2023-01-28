@@ -1,8 +1,12 @@
-import java.util.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 
 final public class Main {
 
+    private static final Logger log = LogManager.getLogger(Main.class);
     public static void main(String[] args) {
 
         ArrayList<University> universities = new ArrayList<>();
@@ -18,14 +22,20 @@ final public class Main {
         double currentCourseNumber = 0.0;
         double avgExamScore = 0.0;
 
+
+//// использование где то в дальнейшем в программе.
+        log.info ("Time: " + System.currentTimeMillis());
+        log.info("Это информационное сообщение!");
+ //       log.error("Это сообщение ошибки");
+
 //     Чтение списка университетов, заполнение коллекции
        ReadFile.readFileUniversity
                (universities, id, fullName, shortName, yearOfFoundation, mainProfile, countRow);
-
+        log.info("The Universities file was read successfully!");
        //     Чтение списка студентов, заполнение коллекции
        ReadFile.readFileStudents
                (students, fullName, countRow, universityId, currentCourseNumber, avgExamScore);
-
+        log.info("The Students file was read successfully!");
         int kindOfUniversities = 3;
         int kindOfStudents = 2;
 

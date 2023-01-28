@@ -9,21 +9,32 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 public class ReadFile {
 
-// Метод чтения списка университетов
+    // иницирование логгера
+    public static final Logger logger = Logger.getLogger(ReadFile.class.getName());
+
+     // Метод чтения списка университетов
     static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
+        logger.log(Level.INFO, "Read list University");
 
         try {
             inputStream = new FileInputStream
                     ("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
+           logger.log(Level.INFO, "Read info");
             workBook = new XSSFWorkbook(inputStream);
+            logger.log(Level.FINE, "Read is fine!!");
         } catch (
                 IOException e) {
             e.printStackTrace();
+            logger.log(Level.SEVERE , "Error message", e);
         }
         //разбираем первый лист входного файла на объектную модель
         Sheet sheet = workBook.getSheetAt(1);
@@ -54,13 +65,17 @@ public class ReadFile {
     static void readFileStudents(ArrayList<Student> students, String fullName, int countRow, String universityId, double currentCourseNumber, double avgExamScore) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
+        logger.log(Level.INFO, "Read list Students");
 
         try {
             inputStream = new FileInputStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
+            logger.log(Level.ALL, "All logs");
             workBook = new XSSFWorkbook(inputStream);
+            logger.log(Level.FINE, "Read list of students is fine!!");
         } catch (
                 IOException e) {
             e.printStackTrace();
+            logger.log(Level.SEVERE , "Error message", e);
         }
         //разбираем первый лист входного файла на объектную модель
         Sheet sheet = workBook.getSheetAt(0);
