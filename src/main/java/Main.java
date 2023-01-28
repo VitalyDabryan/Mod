@@ -1,5 +1,12 @@
+import enums.StudyProfile;
+import model.Statistics;
+import model.Student;
+import model.University;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import readWriteFile.ReadFile;
+import readWriteFile.WriteFile;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +107,7 @@ final public class Main {
 
 /*
         printMenuUniversity();
-        UniversitiesComparators myUniversityComparator = null;
+        enums.UniversitiesComparators myUniversityComparator = null;
 
         Scanner scanner = new Scanner(System.in);
         int choiseUniversity = 8;
@@ -109,23 +116,23 @@ final public class Main {
             choiseUniversity = scanner.nextInt();
                 switch (choiseUniversity) {
                     case 1:
-                        myUniversityComparator = UniversitiesComparators.IdComparator;
+                        myUniversityComparator = enums.UniversitiesComparators.allComparator.IdComparator;
                         choiseUniversity = 0;
                         break;
                     case 2:
-                        myUniversityComparator = UniversitiesComparators.UniFullNameComparator;
+                        myUniversityComparator = enums.UniversitiesComparators.allComparator.UniFullNameComparator;
                         choiseUniversity = 0;
                         break;
                     case 3:
-                        myUniversityComparator = UniversitiesComparators.UniShortNameComparator;
+                        myUniversityComparator = enums.UniversitiesComparators.allComparator.UniShortNameComparator;
                         choiseUniversity = 0;
                         break;
                     case 4:
-                        myUniversityComparator = UniversitiesComparators.UniYearOfFoundationComparator;
+                        myUniversityComparator = enums.UniversitiesComparators.allComparator.UniYearOfFoundationComparator;
                         choiseUniversity = 0;
                         break;
                     case 5:
-                        myUniversityComparator = UniversitiesComparators.UniProfileNameComparator;
+                        myUniversityComparator = enums.UniversitiesComparators.allComparator.UniProfileNameComparator;
                         choiseUniversity = 0;
                         break;
                     case 0:
@@ -136,23 +143,23 @@ final public class Main {
         }
 
 // Сохранить  экземпляры компараторов Universities в переменные с типом интерфейса компаратора
-        ArrayList<University> universitiesId = new ArrayList<>();
-        ArrayList<University> universitiesFullName = new ArrayList<>();
-        ArrayList<University> universitiesShortName = new ArrayList<>();
-        ArrayList<University> universitiesYearOfFoundation = new ArrayList<>();
-        ArrayList<University> universitiesProfileName = new ArrayList<>();
+        ArrayList<model.University> universitiesId = new ArrayList<>();
+        ArrayList<model.University> universitiesFullName = new ArrayList<>();
+        ArrayList<model.University> universitiesShortName = new ArrayList<>();
+        ArrayList<model.University> universitiesYearOfFoundation = new ArrayList<>();
+        ArrayList<model.University> universitiesProfileName = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            if (i == 0) universitiesId = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.IdComparator);
-            if (i == 1) universitiesFullName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniFullNameComparator);
-            if (i == 2) universitiesShortName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniShortNameComparator);
-            if (i == 3) universitiesYearOfFoundation = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniYearOfFoundationComparator);
-            if (i == 4) universitiesProfileName = SelectComparator.selectUniversitiesComparator(universities, UniversitiesComparators.UniProfileNameComparator);
+            if (i == 0) universitiesId = allComparator.SelectComparator.selectUniversitiesComparator(universities, enums.UniversitiesComparators.allComparator.IdComparator);
+            if (i == 1) universitiesFullName = allComparator.SelectComparator.selectUniversitiesComparator(universities, enums.UniversitiesComparators.allComparator.UniFullNameComparator);
+            if (i == 2) universitiesShortName = allComparator.SelectComparator.selectUniversitiesComparator(universities, enums.UniversitiesComparators.allComparator.UniShortNameComparator);
+            if (i == 3) universitiesYearOfFoundation = allComparator.SelectComparator.selectUniversitiesComparator(universities, enums.UniversitiesComparators.allComparator.UniYearOfFoundationComparator);
+            if (i == 4) universitiesProfileName = allComparator.SelectComparator.selectUniversitiesComparator(universities, enums.UniversitiesComparators.allComparator.UniProfileNameComparator);
         }
 
        System.out.println("Collection of universities:");
 
-       if (myUniversityComparator != null) universities = SelectComparator.selectUniversitiesComparator(universities, myUniversityComparator);
+       if (myUniversityComparator != null) universities = allComparator.SelectComparator.selectUniversitiesComparator(universities, myUniversityComparator);
 //       for (Object o: universities) {
 //            System.out.println(o);
 //       }
@@ -163,38 +170,38 @@ final public class Main {
 //   выбираем тип компаратора для списка студентов
        printMenuStudents();
 
-        ArrayList<Student> studentsUniId = new ArrayList<>();
-        ArrayList<Student> studentsStudFullName = new ArrayList<>();
-        ArrayList<Student> studentsCorceNumber = new ArrayList<>();
-        ArrayList<Student> studentsAvgExamScore = new ArrayList<>();
-// Сохранить  экземпляры компараторов Student в переменные с типом интерфейса компаратора
+        ArrayList<model.Student> studentsUniId = new ArrayList<>();
+        ArrayList<model.Student> studentsStudFullName = new ArrayList<>();
+        ArrayList<model.Student> studentsCorceNumber = new ArrayList<>();
+        ArrayList<model.Student> studentsAvgExamScore = new ArrayList<>();
+// Сохранить  экземпляры компараторов model.Student в переменные с типом интерфейса компаратора
         for (int i = 0; i < 4; i++) {
-            if (i == 0) studentsUniId = SelectComparator.selectStudentComparator(students, StudentsComparators.UniversityIdComparator);
-            if (i == 1) studentsStudFullName = SelectComparator.selectStudentComparator(students, StudentsComparators.FullNameComparator);
-            if (i == 2) studentsCorceNumber = SelectComparator.selectStudentComparator(students, StudentsComparators.CurrentCourseNumberComparator);
-            if (i == 3) studentsAvgExamScore = SelectComparator.selectStudentComparator(students, StudentsComparators.AvgExamScoreComparator);
+            if (i == 0) studentsUniId = allComparator.SelectComparator.selectStudentComparator(students, enums.StudentsComparators.allComparator.UniversityIdComparator);
+            if (i == 1) studentsStudFullName = allComparator.SelectComparator.selectStudentComparator(students, enums.StudentsComparators.allComparator.FullNameComparator);
+            if (i == 2) studentsCorceNumber = allComparator.SelectComparator.selectStudentComparator(students, enums.StudentsComparators.allComparator.CurrentCourseNumberComparator);
+            if (i == 3) studentsAvgExamScore = allComparator.SelectComparator.selectStudentComparator(students, enums.StudentsComparators.allComparator.StudAvgExamScoreComparator);
         }
 
         int choiseStudents = 8;
-        StudentsComparators myStudentComparator = null;
+        enums.StudentsComparators myStudentComparator = null;
 
         while (choiseStudents != 0) {
             choiseStudents = scanner.nextInt();
             switch (choiseStudents) {
                 case 1:
-                    myStudentComparator = StudentsComparators.UniversityIdComparator;
+                    myStudentComparator = enums.StudentsComparators.allComparator.UniversityIdComparator;
                     choiseStudents = 0;
                     break;
                 case 2:
-                    myStudentComparator = StudentsComparators.FullNameComparator;
+                    myStudentComparator = enums.StudentsComparators.allComparator.FullNameComparator;
                     choiseStudents = 0;
                     break;
                 case 3:
-                    myStudentComparator = StudentsComparators.CurrentCourseNumberComparator;
+                    myStudentComparator = enums.StudentsComparators.allComparator.CurrentCourseNumberComparator;
                     choiseStudents = 0;
                     break;
                 case 4:
-                    myStudentComparator = StudentsComparators.AvgExamScoreComparator;
+                    myStudentComparator = enums.StudentsComparators.allComparator.StudAvgExamScoreComparator;
                     choiseStudents = 0;
                     break;
                 case 0:
@@ -205,10 +212,10 @@ final public class Main {
         }
 
        System.out.println("Collection of students:");
-       if (myStudentComparator != null) students = SelectComparator.selectStudentComparator(students, myStudentComparator);
+       if (myStudentComparator != null) students = allComparator.SelectComparator.selectStudentComparator(students, myStudentComparator);
        students.stream()
                 .forEach(System.out::println);
-//       for (Student student : students) {
+//       for (model.Student student : students) {
 //            System.out.println(student);
 //       }
 */
@@ -230,7 +237,7 @@ final public class Main {
 
     private static void printMenuStudents() {
         System.out.println("Choose a way to sort the list of student");
-        System.out.println("1. Sorting by student's University id");
+        System.out.println("1. Sorting by student's model.University id");
         System.out.println("2. Sorting by full name");
         System.out.println("3. Sorting by Current Course Number");
         System.out.println("4. Sorting by Average ExamScore");

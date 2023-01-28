@@ -1,3 +1,7 @@
+import enums.StudyProfile;
+import model.Statistics;
+import model.Student;
+import model.University;
 import org.apache.commons.math3.util.Precision;
 import java.util.ArrayList;
 
