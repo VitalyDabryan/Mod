@@ -1,12 +1,9 @@
 package readWriteFile;
-
-import com.zaxxer.sparsebits.SparseBitSet;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import java.io.FileOutputStream;
 import model.*;
 import java.util.ArrayList;
-import static java.lang.String.valueOf;
 
 public class WriteFile {
     public static void writeFile(ArrayList<Statistics> statistics) {

@@ -1,45 +1,41 @@
 package readWriteFile;
-
 import enums.StudyProfile;
 import model.Student;
 import model.University;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 
 public class ReadFile {
 
     // иницирование логгера
-    public static final Logger logger = Logger.getLogger(ReadFile.class.getName());
+    private static final Logger log = LogManager.getLogger(ReadFile.class);
 
      // Метод чтения списка университетов
     public static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
-        logger.log(Level.INFO, "Read list model.University");
+        log.info("Read list model.University");
 
         try {
             inputStream = new FileInputStream
                     ("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
-           logger.log(Level.INFO, "Read info");
+          log.info( "Read info universities.");
             workBook = new XSSFWorkbook(inputStream);
-            logger.log(Level.FINE, "Read is fine!!");
+            log.info("Read is fine!!");
         } catch (
                 IOException e) {
             e.printStackTrace();
-            logger.log(Level.SEVERE , "Error message", e);
+            log.error( "Error message", e);
         }
         //разбираем первый лист входного файла на объектную модель
         Sheet sheet = workBook.getSheetAt(1);
@@ -70,17 +66,17 @@ public class ReadFile {
     public static void readFileStudents(ArrayList<Student> students, String fullName, int countRow, String universityId, double currentCourseNumber, double avgExamScore) {
         InputStream inputStream = null;
         XSSFWorkbook workBook = null;
-        logger.log(Level.INFO, "Read list Students");
+        log.info( "Read list Students");
 
         try {
             inputStream = new FileInputStream("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
-            logger.log(Level.ALL, "All logs");
+            log.info("All logs");
             workBook = new XSSFWorkbook(inputStream);
-            logger.log(Level.FINE, "Read list of students is fine!!");
+            log.info( "Read list of students is sucsess!!");
         } catch (
                 IOException e) {
             e.printStackTrace();
-            logger.log(Level.SEVERE , "Error message", e);
+            log.error("Error message", e);
         }
         //разбираем первый лист входного файла на объектную модель
         Sheet sheet = workBook.getSheetAt(0);

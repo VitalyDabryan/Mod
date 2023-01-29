@@ -2,7 +2,6 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import model.Student;
 import model.University;
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
