@@ -1,3 +1,4 @@
+import MarshDemarshOperation.StudentsInfo;
 import enums.StudyProfile;
 import model.Statistics;
 import model.Student;
@@ -6,15 +7,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import readWriteFile.ReadFile;
 import readWriteFile.WriteFile;
+import java.io.File;
 
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.List;
 
 final public class Main {
 
     private static final Logger log = LogManager.getLogger(Main.class);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JAXBException {
 
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
@@ -45,6 +50,12 @@ final public class Main {
         log.info("The Students file was read successfully!");
         int kindOfUniversities = 3;
         int kindOfStudents = 2;
+
+        String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\studentsInfo.xml";
+
+        StudentsInfo.marshStudents(students);
+
+
 
         System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
 

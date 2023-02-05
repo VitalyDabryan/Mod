@@ -29,7 +29,7 @@ public class ReadFile {
         try {
             inputStream = new FileInputStream
                     ("C:\\Users\\100nout\\IdeaProjects\\ProjectUniversity\\src\\main\\resources\\universityInfo.xlsx");
-          log.info( "Read info universities.");
+          log.info( "Read info universities");
             workBook = new XSSFWorkbook(inputStream);
             log.info("Read is fine!!");
         } catch (

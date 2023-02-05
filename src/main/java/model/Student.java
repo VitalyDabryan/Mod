@@ -6,8 +6,16 @@ import com.google.gson.annotations.SerializedName;
 import java.util.Objects;
 import allComparator.*;
 
+import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlElementWrapper;
+
+ @XmlRootElement(name = "StudentsInfo")
+@XmlType(propOrder = { "fullName", "universityId", "avgExamScore" })
 public class Student implements StudComparator<Student> {
-    @SerializedName("fullName") String fullName;
+    @SerializedName("fullName")
+    String fullName;
     @SerializedName("IdUniversity") String universityId;
     @SerializedName("course") double currentCourseNumber;
     @SerializedName("avgScore") double avgExamScore;
@@ -19,21 +27,26 @@ public class Student implements StudComparator<Student> {
         this.avgExamScore = avgExamScore;
     }
 
-    public String getFullName() {
+    public Student() {
+     }
+
+     @XmlElement(name = "fullName") public String getFullName() {
         return fullName;
     }
 
-    public String getUniversityId() {
+    @XmlElement(name = "universityId") public String getUniversityId() {
         return universityId;
     }
 
+    @XmlTransient
     public double getCurrentCourseNumber() {
         return currentCourseNumber;
     }
 
-    public double getAvgExamScore() {
+    @XmlElement(name = "avgExamScore") public double getAvgExamScore() {
         return avgExamScore;
     }
+
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
