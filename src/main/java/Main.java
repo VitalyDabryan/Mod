@@ -7,12 +7,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import readWriteFile.ReadFile;
 import readWriteFile.WriteFile;
-import java.io.File;
 
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +54,14 @@ final public class Main {
         String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\studentsInfo.xml";
 
         StudentsInfo.marshStudents(students);
+
+
+// восстанавливаем объект из XML файла
+//        Student unmarshStudent = StudentsInfo.fromXmlToObject(studentsInfo_XML);
+//        if (unmarshStudent != null) {
+//            System.out.println(unmarshStudent);
+//        }
+
 
 
 

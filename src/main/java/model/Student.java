@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
- @XmlRootElement(name = "StudentsInfo")
+@XmlRootElement(name = "studentEntry")
 @XmlType(propOrder = { "fullName", "universityId", "avgExamScore" })
 public class Student implements StudComparator<Student> {
     @SerializedName("fullName")
@@ -24,6 +24,12 @@ public class Student implements StudComparator<Student> {
         this.fullName = fullName;
         this.universityId = universityId;
         this.currentCourseNumber = currentCourseNumber;
+        this.avgExamScore = avgExamScore;
+    }
+
+    public Student(String fullName, String universityId, double avgExamScore) {
+        this.fullName = fullName;
+        this.universityId = universityId;
         this.avgExamScore = avgExamScore;
     }
 
@@ -46,7 +52,6 @@ public class Student implements StudComparator<Student> {
     @XmlElement(name = "avgExamScore") public double getAvgExamScore() {
         return avgExamScore;
     }
-
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
