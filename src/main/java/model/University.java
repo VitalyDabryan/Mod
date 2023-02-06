@@ -6,10 +6,14 @@ import java.util.Objects;
 import allComparator.*;
 import enums.*;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement(name = "universityEntry")
+@XmlType(propOrder = { "id", "fullName", "shortName"  })
 public class University implements StudComparator<University> {
     @SerializedName("id")
     String id;
-    @SerializedName("fullName")
+    @SerializedName("universityName")
     public String fullName;
     @SerializedName("shortName")
     String shortName;
@@ -38,23 +42,25 @@ public class University implements StudComparator<University> {
         }
         throw new IllegalArgumentException("No such value");
     }
-    public String getId() {
+    @XmlElement(name = "id") public String getId() {
         return id;
     }
 
-    public String getFullName() {
+
+    @XmlElement(name = "fullName") public String getFullName() {
         return fullName;
     }
 
+    @XmlElement(name = "shortName")
     public String getShortName() {
         return shortName;
     }
 
-    public double getYearOfFoundation() {
+    @XmlTransient public double getYearOfFoundation() {
         return yearOfFoundation;
     }
 
-    public StudyProfile getMainProfile() {
+    @XmlTransient public StudyProfile getMainProfile() {
         return mainProfile;
     }
 

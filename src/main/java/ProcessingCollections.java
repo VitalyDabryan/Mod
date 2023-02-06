@@ -5,6 +5,7 @@ import model.University;
 import org.apache.commons.math3.util.Precision;
 import java.util.ArrayList;
 
+// Класс, отвечающий за обработку статистики
 public class ProcessingCollections {
 
 

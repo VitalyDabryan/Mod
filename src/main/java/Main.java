@@ -1,4 +1,6 @@
-import MarshDemarshOperation.StudentsInfo;
+import MarshDemarshOperation.MarshStudent;
+import allJSON.JsonUtil;
+import allJSON.WriteJSONFile;
 import enums.StudyProfile;
 import model.Statistics;
 import model.Student;
@@ -8,11 +10,10 @@ import org.apache.logging.log4j.Logger;
 import readWriteFile.ReadFile;
 import readWriteFile.WriteFile;
 
-
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +36,8 @@ final public class Main {
         double avgExamScore = 0.0;
 
 
-//// использование где то в дальнейшем в программе.
         log.info ("Time: " + System.currentTimeMillis());
         log.info("Это информационное сообщение!");
- //       log.error("Это сообщение ошибки");
 
 //     Чтение списка университетов, заполнение коллекции
        ReadFile.readFileUniversity
@@ -51,13 +50,15 @@ final public class Main {
         int kindOfUniversities = 3;
         int kindOfStudents = 2;
 
-        String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\studentsInfo.xml";
+        new File("C:\\Users\\100nout\\Downloads\\xmlReqs").mkdirs();
+        new File("C:\\Users\\100nout\\Downloads\\jsonReqs").mkdirs();
+        String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo.xml";
 
-        StudentsInfo.marshStudents(students);
-
+        MarshStudent.marshStudents(students);
+//        MarshUniversity.marshUniversity(universities);
 
 // восстанавливаем объект из XML файла
-//        Student unmarshStudent = StudentsInfo.fromXmlToObject(studentsInfo_XML);
+//        Student unmarshStudent = MarshStudent.fromXmlToObject(studentsInfo_XML);
 //        if (unmarshStudent != null) {
 //            System.out.println(unmarshStudent);
 //        }
@@ -66,6 +67,10 @@ final public class Main {
 
 
         System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
+
+        String path = "C:\\Users\\100nout\\Downloads\\jsonReqs\\req.json";
+
+        WriteJSONFile.writeJSONFile(universities, path);
 
         System.out.println(JsonUtil.jsonAllStudents(students)); // сериализация коллекции студентов
 
@@ -239,7 +244,6 @@ final public class Main {
 //       }
 */
     }
-
 
 
 

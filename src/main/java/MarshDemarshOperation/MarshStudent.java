@@ -5,26 +5,17 @@ import javax.xml.bind.JAXBException;
 
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElementWrapper;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
 import java.io.*;
 import java.util.ArrayList;
 
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 import model.Student;
-//
-//@XmlRootElement(name = "studentEntry")
-////@XmlType(propOrder = { "fullName", "universityId", "avgExamScore" })
-public class StudentsInfo {
+
+public class MarshStudent {
     static String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\studentsInfo.xml";
-//    @XmlElement(name = "studentName")    private String fullName;
-//    @XmlElement(name = "universityId")    private String universityId;
-//    @XmlElement(name = "avgScore") private double avgExamScore;
     @XmlElementWrapper (name="studentEntry")  private Student student;
 
-
-
-    public static void marshStudents(ArrayList<Student> students) {
+     public static void marshStudents(ArrayList<Student> students) {
 
         File file = new File("C:\\Users\\100nout\\Downloads\\studentsInfo.xml");
 
@@ -35,17 +26,13 @@ public class StudentsInfo {
        }
 
     }
-
-
-
-
-    public StudentsInfo() throws IllegalAnnotationsException {
+    public MarshStudent() throws IllegalAnnotationsException {
     }
     // сохраняем объект в XML файл
     @XmlElementWrapper (name="studentEntry")  private static void convertObjectToXml(Student student, ArrayList<Student> students,
                                            String studentsInfo_XML) {
         try {
-            FileWriter writer = new FileWriter("C:\\Users\\100nout\\Downloads\\studentsInfo.xml", true);
+            FileWriter writer = new FileWriter("C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo.xml", true);
             JAXBContext context = JAXBContext.newInstance(Student.class);
             Marshaller marshaller = context.createMarshaller();
             // устанавливаем флаг для читабельного вывода XML в JAXB
@@ -54,8 +41,6 @@ public class StudentsInfo {
             // маршаллинг объекта в файл
             marshaller.marshal(student, writer);
 
-
- //           marshaller.marshal(student, new File(studentsInfo_XML));
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {
