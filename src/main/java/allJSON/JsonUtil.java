@@ -78,6 +78,7 @@ public class JsonUtil {
         Gson gson = builder.create();
         University university = gson.fromJson(jsonKindOfUniversity, University.class);
         return university;
+
     }
 
     public static Student jsonDeserializerKindOfStudents(String jsonKindOfStudents) {
