@@ -13,8 +13,7 @@ import java.util.ArrayList;
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 import model.University;
 
-@XmlRootElement(name = "universityEntry")
-@XmlType(propOrder = { "id", "fullName", "shortName"  })
+
 public class MarshUniversity {
     private ArrayList<University> marshUniversity;
 
@@ -25,10 +24,10 @@ public class MarshUniversity {
 
         File file = new File("C:\\Users\\100nout\\Downloads\\studentsInfo.xml");
 
-        for (model.University university1 : universities) {
-            System.out.println(university1);
+        for (model.University university : universities) {
+            System.out.println(university);
             // сохраняем объект в XML файл
-            convertObjectToXml(university1, universities, studentsInfo_XML);
+            convertObjectToXml(university, universities, studentsInfo_XML);
         }
 
     }
@@ -36,7 +35,7 @@ public class MarshUniversity {
     }
     // сохраняем объект в XML файл
     @XmlElementWrapper (name="universityEntry")
-    private static void convertObjectToXml(University university1, ArrayList<University> universities,
+    private static void convertObjectToXml(University university, ArrayList<University> universities,
                                            String studentsInfo_XML) {
         try {
             FileWriter writer = new FileWriter("C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo.xml", true);
@@ -46,7 +45,7 @@ public class MarshUniversity {
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
             // маршаллинг объекта в файл
-            marshaller.marshal(university1, writer);
+            marshaller.marshal(university, writer);
 
         } catch (JAXBException e) {
             e.printStackTrace();

@@ -53,7 +53,7 @@ public class ProcessingCollections {
                         statAvgExamScore[0] = statAvgExamScore[0] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[0];
                         count[0]++;
-                        if (count[0] > lastCount[0]) mostPopularUniversity[0] = university.getFullName();
+                        if (count[0] > lastCount[0]) mostPopularUniversity[0] = university.getUniFullName();
 
                     }
                 } lastCount[0] = count[0]; count[0] = 1;
@@ -66,7 +66,7 @@ public class ProcessingCollections {
                         statAvgExamScore[1] = statAvgExamScore[1] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[1];
                         count[1]++;
-                        if (count[1] > lastCount[1]) mostPopularUniversity[1] = university.getFullName();
+                        if (count[1] > lastCount[1]) mostPopularUniversity[1] = university.getUniFullName();
 
                     }
                 } lastCount[1] = count[1]; count[1] = 1;
@@ -79,7 +79,7 @@ public class ProcessingCollections {
                         statAvgExamScore[2] = statAvgExamScore[2] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[2];
                         count[2]++;
-                        if (count[2] > lastCount[2]) mostPopularUniversity[2] = university.getFullName();
+                        if (count[2] > lastCount[2]) mostPopularUniversity[2] = university.getUniFullName();
 
                     }
                 } lastCount[2] = count[2]; count[2] = 1;
@@ -92,7 +92,7 @@ public class ProcessingCollections {
                         statAvgExamScore[3] = statAvgExamScore[3] + student.getAvgExamScore();
                         ++amountOfStudentsByProfile[3];
                         count[3]++;
-                        if (count[3] > lastCount[3]) mostPopularUniversity[3] = university.getFullName();
+                        if (count[3] > lastCount[3]) mostPopularUniversity[3] = university.getUniFullName();
 
                     }
                 } lastCount[3] = count[3]; count[3] = 1;

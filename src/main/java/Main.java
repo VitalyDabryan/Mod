@@ -12,8 +12,6 @@ import readWriteFile.WriteFile;
 
 import javax.xml.bind.JAXBException;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +53,7 @@ final public class Main {
         String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo.xml";
 
         MarshStudent.marshStudents(students);
-//        MarshUniversity.marshUniversity(universities);
+      //  MarshUniversity.marshUniversity(universities);
 
 // восстанавливаем объект из XML файла
 //        Student unmarshStudent = MarshStudent.fromXmlToObject(studentsInfo_XML);
@@ -68,15 +66,16 @@ final public class Main {
 
         System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
 
-        String path = "C:\\Users\\100nout\\Downloads\\jsonReqs\\req.json";
 
-        WriteJSONFile.writeJSONFile(universities, path);
 
         System.out.println(JsonUtil.jsonAllStudents(students)); // сериализация коллекции студентов
+
+
 
         System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities)); // сериализация элемента коллекции университетов
 
         System.out.println(JsonUtil.jsonKindOfStudents(students, kindOfStudents));  // сериализация элемента коллекции студентов
+
 
         // Десериализация коллекции Университетов
         String jsonAllUniversities = JsonUtil.jsonAllUniversities(universities);
@@ -121,13 +120,18 @@ final public class Main {
 
         statistics = ProcessingCollections.StatisticOfStudyProfile(universities, students, statistics);
 
+        System.out.println(JsonUtil.jsonAllStatistics(statistics));  // сериализация элементов статистики
+
         statistics.stream()
                 .forEach(System.out::println);
 
-        // Запись статистики в файл: C:\Users\100nout\Downloads\NewExcelFile.xls
+        // Запись статистики в файл exe: C:\Users\100nout\Downloads\NewExcelFile.xls
         WriteFile.writeFile(statistics);
 
-
+        // Запись коллекций в файлы json
+        WriteJSONFile.writeJSONFileUniversity(universities);
+        WriteJSONFile.writeJSONFileStudents(students);
+        WriteJSONFile.writeJSONFileStatistics(statistics);
 
 /*
         printMenuUniversity();

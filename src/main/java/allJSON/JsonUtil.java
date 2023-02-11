@@ -2,6 +2,7 @@ package allJSON;
 
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import model.Statistics;
 import model.Student;
 import model.University;
 import java.lang.reflect.Type;
@@ -12,6 +13,12 @@ public class JsonUtil {
     public static String jsonAllUniversities(ArrayList<University> universities) {
         String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
                 create().toJson(universities);
+        return json;
+    }
+
+    public static String jsonAllStatistics(ArrayList<Statistics> statistics) {
+        String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
+                create().toJson(statistics);
         return json;
     }
 

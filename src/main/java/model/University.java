@@ -1,20 +1,24 @@
 package model;
 
+import allComparator.StudComparator;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 import allComparator.*;
-import enums.*;
+import enums.StudyProfile;
 
 import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlElementWrapper;
 
 @XmlRootElement(name = "universityEntry")
-@XmlType(propOrder = { "id", "fullName", "shortName"  })
+@XmlType(propOrder = { "id", "shortName"  })
 public class University implements StudComparator<University> {
     @SerializedName("id")
     String id;
     @SerializedName("universityName")
-    public String fullName;
+    public String uniFullName;
     @SerializedName("shortName")
     String shortName;
     @SerializedName("year")
@@ -23,9 +27,9 @@ public class University implements StudComparator<University> {
     StudyProfile mainProfile;
     String profileName;
 
-    public University(String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile) {
+    public University(String id, String uniFullName, String shortName, double yearOfFoundation, StudyProfile mainProfile) {
         this.id = id;
-        this.fullName = fullName;
+        this.uniFullName = uniFullName;
         this.shortName = shortName;
         this.yearOfFoundation = yearOfFoundation;
         this.mainProfile = mainProfile;
@@ -47,8 +51,8 @@ public class University implements StudComparator<University> {
     }
 
 
-    @XmlElement(name = "fullName") public String getFullName() {
-        return fullName;
+    @XmlTransient  public String getUniFullName() {
+        return uniFullName;
     }
 
     @XmlElement(name = "shortName")
@@ -68,8 +72,8 @@ public class University implements StudComparator<University> {
         this.id = id; return this;
     }
 
-    public University setFullName(String fullName) {
-        this.fullName = fullName; return this;
+    public University setUniFullName(String uniFullName) {
+        this.uniFullName = uniFullName; return this;
     }
 
     public University setShortName(String shortName) {
@@ -88,7 +92,7 @@ public class University implements StudComparator<University> {
     public String toString() {
         return "model.University{" +
                 "id='" + id + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", fullName='" + uniFullName + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", yearOfFoundation=" + yearOfFoundation +
                 ", mainProfile=" + mainProfile +
@@ -109,7 +113,7 @@ public class University implements StudComparator<University> {
         if (!(o instanceof University that)) return false;
         return Double.compare(that.getYearOfFoundation(), getYearOfFoundation()) == 0 &&
                 getId().equals(that.getId()) &&
-                getFullName().equals(that.getFullName()) &&
+                getUniFullName().equals(that.getUniFullName()) &&
                 getShortName().equals(that.getShortName()) &&
                 getMainProfile() == that.getMainProfile() &&
                 profileName.equals(that.profileName);
@@ -117,7 +121,7 @@ public class University implements StudComparator<University> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFullName(), getShortName(), getYearOfFoundation(), getMainProfile(), profileName);
+        return Objects.hash(getId(), getUniFullName(), getShortName(), getYearOfFoundation(), getMainProfile(), profileName);
     }
 
 
