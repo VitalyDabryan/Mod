@@ -23,8 +23,6 @@ public class MarshStudent {
 
      public static void marshStudents(ArrayList<Student> students) {
 
-        File file = new File("C:\\Users\\100nout\\Downloads\\studentsInfo.xml");
-
         for (model.Student student : students) {
             System.out.println(student);
             // сохраняем объект в XML файл

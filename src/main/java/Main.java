@@ -54,8 +54,9 @@ final public class Main {
         new File("C:\\Users\\100nout\\Downloads\\jsonReqs").mkdirs();
 
         MarshStudent.marshStudents(students);
-        log.info("The collection of students was made successfully!");
-      //  MarshUniversity.marshUniversity(universities);
+        log.info("xml-file collection of students was made successfully!");
+        MarshUniversity.marshUniversity(universities);
+        log.info("xml-file collection of universities was made successfully!");
 
         System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
         log.info("Serialization of the collection of universities was made successfully!");
@@ -123,7 +124,7 @@ final public class Main {
         log.info("Statistics exe file created!");
 
         MarshStatistics.marshStatistics(statistics);
-        log.info("The collection of statistics was made successfully!");
+        log.info("xml-file collection of statistics was made successfully!");
 
         // Запись коллекций в файлы json
         WriteJSONFile.writeJSONFileUniversity(universities);

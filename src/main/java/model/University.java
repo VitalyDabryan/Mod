@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "universityEntry")
-@XmlType(propOrder = {"id", "fullName", "shortName"})
+@XmlType(propOrder = {"id", "uniFullName", "mainProfile"})
 public class University implements StudComparator<University> {
     @SerializedName("id")
     String id;
@@ -47,11 +47,11 @@ public class University implements StudComparator<University> {
     }
 
 
-    @XmlElement(name = "fullName")  public String getUniFullName() {
+    @XmlTransient public String getUniFullName() {
         return uniFullName;
     }
 
-    @XmlElement(name = "shortName")
+    @XmlTransient
     public String getShortName() {
         return shortName;
     }
@@ -60,7 +60,7 @@ public class University implements StudComparator<University> {
         return yearOfFoundation;
     }
 
-    @XmlTransient public StudyProfile getMainProfile() {
+    @XmlElement(name = "mainProfile") public StudyProfile getMainProfile() {
         return mainProfile;
     }
 

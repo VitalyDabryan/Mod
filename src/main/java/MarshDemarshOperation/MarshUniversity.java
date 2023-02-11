@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
@@ -17,14 +19,15 @@ import static readWriteFile.ReadFile.log;
 
 
 public class MarshUniversity {
+    static LocalDateTime current = LocalDateTime.now();
+    static DateTimeFormatter format = DateTimeFormatter.ofPattern("_dd_MM_yyyy");
+    static String formatedDate = current.format(format);
+
     private ArrayList<University> marshUniversity;
 
-    static String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\studentsInfo.xml";
     @XmlElementWrapper (name="universityEntry")  private University university;
 
     public static void marshUniversity(ArrayList<University> universities) {
-
-        File file = new File("C:\\Users\\100nout\\Downloads\\studentsInfo.xml");
 
         for (model.University university : universities) {
             System.out.println(university);
@@ -32,15 +35,13 @@ public class MarshUniversity {
             // сохраняем объект в XML файл
             convertObjectToXml(university);
         }
+    }
 
-    }
-    public MarshUniversity() throws IllegalAnnotationsException {
-    }
     // сохраняем объект в XML файл
     @XmlElementWrapper (name="universityEntry")
     private static void convertObjectToXml(University university) {
         try {
-            FileWriter writer = new FileWriter("C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo1.xml", true);
+            FileWriter writer = new FileWriter("C:\\Users\\100nout\\Downloads\\xmlReqs\\universityInfo" + formatedDate + ".xml", true);
             JAXBContext context = JAXBContext.newInstance(University.class);
             Marshaller marshaller = context.createMarshaller();
 

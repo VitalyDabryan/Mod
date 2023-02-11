@@ -2,15 +2,10 @@ package model;
 
 import allComparator.StudComparator;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.Objects;
-import allComparator.*;
-
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlElementWrapper;
-
 @XmlRootElement(name = "studentEntry")
 @XmlType(propOrder = { "fullName", "universityId", "avgExamScore" })
 public class Student implements StudComparator<Student> {
