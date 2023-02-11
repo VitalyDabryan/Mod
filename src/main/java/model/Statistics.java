@@ -2,6 +2,13 @@ package model;
 
 import enums.StudyProfile;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "statisticEntry")
+@XmlType(propOrder = {"avgExamScore", "mainProfile"})
 public class Statistics {
     StudyProfile mainProfile;
     double avgExamScore;
@@ -18,7 +25,10 @@ public class Statistics {
         this.mostPopularUniversity = mostPopularUniversity;
     }
 
-    public StudyProfile getMainProfile() {
+    public Statistics() {
+    }
+
+    @XmlElement(name = "mainProfile") public StudyProfile getMainProfile() {
         return mainProfile;
     }
 
@@ -26,7 +36,7 @@ public class Statistics {
         this.mainProfile = mainProfile;
     }
 
-    public double getAvgExamScore() {
+    @XmlElement(name = "avgExamScore")     public double getAvgExamScore() {
         return avgExamScore;
     }
 
@@ -34,7 +44,8 @@ public class Statistics {
         this.avgExamScore = avgExamScore;
     }
 
-    public int getAmountOfStudentsByProfile() {
+
+    @XmlTransient public int getAmountOfStudentsByProfile() {
         return amountOfStudentsByProfile;
     }
 
@@ -42,7 +53,7 @@ public class Statistics {
         this.amountOfStudentsByProfile = amountOfStudentsByProfile;
     }
 
-    public int getAmountOfUniversitiesByProfile() {
+    @XmlTransient public int getAmountOfUniversitiesByProfile() {
         return amountOfUniversitiesByProfile;
     }
 
@@ -50,7 +61,7 @@ public class Statistics {
         this.amountOfUniversitiesByProfile = amountOfUniversitiesByProfile;
     }
 
-    public String getMostPopularUniversity() {
+    @XmlTransient public String getMostPopularUniversity() {
         return mostPopularUniversity;
     }
 

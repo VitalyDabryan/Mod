@@ -15,7 +15,7 @@ public class JsonUtil {
 
 // Общий метод сериализации для коллекций University, Students, Statistics
     public static <E> String jsonAllCollection(ArrayList<E> collections) {
-        log.info("Begin serialization all collection");
+        log.info("Begin serialization collection of " + collections);
         String json = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().
                 create().toJson(collections);
         return json;

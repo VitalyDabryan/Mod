@@ -1,4 +1,6 @@
+import MarshDemarshOperation.MarshStatistics;
 import MarshDemarshOperation.MarshStudent;
+import MarshDemarshOperation.MarshUniversity;
 import allJSON.JsonUtil;
 import allJSON.WriteJSONFile;
 import enums.StudyProfile;
@@ -119,6 +121,9 @@ final public class Main {
         // Запись статистики в файл exe: C:\Users\100nout\Downloads\NewExcelFile.xls
         WriteFile.writeFile(statistics);
         log.info("Statistics exe file created!");
+
+        MarshStatistics.marshStatistics(statistics);
+        log.info("The collection of statistics was made successfully!");
 
         // Запись коллекций в файлы json
         WriteJSONFile.writeJSONFileUniversity(universities);

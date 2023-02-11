@@ -2,18 +2,14 @@ package model;
 
 import allComparator.StudComparator;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.Objects;
-import allComparator.*;
 import enums.StudyProfile;
-
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlElementWrapper;
 
 @XmlRootElement(name = "universityEntry")
-@XmlType(propOrder = { "id", "shortName"  })
+@XmlType(propOrder = {"id", "fullName", "shortName"})
 public class University implements StudComparator<University> {
     @SerializedName("id")
     String id;
@@ -51,7 +47,7 @@ public class University implements StudComparator<University> {
     }
 
 
-    @XmlTransient  public String getUniFullName() {
+    @XmlElement(name = "fullName")  public String getUniFullName() {
         return uniFullName;
     }
 
