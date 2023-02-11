@@ -18,7 +18,7 @@ import java.util.Iterator;
 public class ReadFile {
 
     // иницирование логгера
-    private static final Logger log = LogManager.getLogger(ReadFile.class);
+    public static final Logger log = LogManager.getLogger(ReadFile.class);
 
      // Метод чтения списка университетов
     public static void readFileUniversity(ArrayList<University> universities, String id, String fullName, String shortName, double yearOfFoundation, StudyProfile mainProfile, int countRow) {

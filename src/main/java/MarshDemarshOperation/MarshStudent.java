@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import com.sun.xml.bind.v2.runtime.IllegalAnnotationsException;
 import model.Student;
 
+import static readWriteFile.ReadFile.log;
+
 public class MarshStudent {
     static LocalDateTime current = LocalDateTime.now();
     static DateTimeFormatter format = DateTimeFormatter.ofPattern("_dd_MM_yyyy");
@@ -45,7 +47,7 @@ public class MarshStudent {
 
             // маршаллинг объекта в файл
             marshaller.marshal(student, writer);
-
+            log.info("Mаршаллинг объекта" + student + "в xml файл");
         } catch (JAXBException e) {
             e.printStackTrace();
         } catch (IOException e) {

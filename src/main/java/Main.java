@@ -18,7 +18,7 @@ import java.util.List;
 final public class Main {
 
     private static final Logger log = LogManager.getLogger(Main.class);
-    public static void main(String[] args) throws JAXBException {
+    public static <E> void main(String[] args) throws JAXBException {
 
         ArrayList<University> universities = new ArrayList<>();
         ArrayList<Student> students = new ArrayList<>();
@@ -50,48 +50,39 @@ final public class Main {
 
         new File("C:\\Users\\100nout\\Downloads\\xmlReqs").mkdirs();
         new File("C:\\Users\\100nout\\Downloads\\jsonReqs").mkdirs();
-        String studentsInfo_XML = "C:\\Users\\100nout\\Downloads\\xmlReqs\\studentsInfo.xml";
 
         MarshStudent.marshStudents(students);
+        log.info("The collection of students was made successfully!");
       //  MarshUniversity.marshUniversity(universities);
 
-// восстанавливаем объект из XML файла
-//        Student unmarshStudent = MarshStudent.fromXmlToObject(studentsInfo_XML);
-//        if (unmarshStudent != null) {
-//            System.out.println(unmarshStudent);
-//        }
-
-
-
-
         System.out.println(JsonUtil.jsonAllUniversities(universities)); // сериализация коллекции университетов
-
-
-
+        log.info("Serialization of the collection of universities was made successfully!");
         System.out.println(JsonUtil.jsonAllStudents(students)); // сериализация коллекции студентов
-
-
-
+        log.info("Serialization of the collection of students was made successfully!");
         System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities)); // сериализация элемента коллекции университетов
-
+        log.info("Serialization object of university was made successfully!");
         System.out.println(JsonUtil.jsonKindOfStudents(students, kindOfStudents));  // сериализация элемента коллекции студентов
-
+        log.info("Serialization  object of student was made successfully!");
 
         // Десериализация коллекции Университетов
         String jsonAllUniversities = JsonUtil.jsonAllUniversities(universities);
         List<University> outputListUniversity = JsonUtil.jsonDeserializerAllUniversities(jsonAllUniversities);
+        log.info("Deserialization of the collection of universities was made successfully!");
 
         // Десериализация коллекции Студентов
         String jsonAllStudents = JsonUtil.jsonAllStudents(students);
         List<Student> outputListStudents = JsonUtil.jsonDeserializerAllStudents(jsonAllStudents);
+        log.info("Deserialization of the collection of students was made successfully!");
 
         // Десериализация объекта списка университетов
         String jsonKindOfUniversities = JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities);
         University jsonDeserializerKindOfUniversities = JsonUtil.jsonDeserializerKindOfUniversities(jsonKindOfUniversities);
+        log.info("Deserialization object of university was made successfully!");
 
         // Десериализация объекта списка студентов
         String jsonKindOfStudents = JsonUtil.jsonKindOfStudents(students, kindOfStudents);
         Student jsonDeserializerKindOfStudents = JsonUtil.jsonDeserializerKindOfStudents(jsonKindOfStudents);
+        log.info("Deserialization  object of student was made successfully!");
 
         System.out.println("Список университетов" + outputListUniversity);
         System.out.println("Список студентов" + outputListStudents);
@@ -100,14 +91,13 @@ final public class Main {
 
         for (kindOfUniversities=0; kindOfUniversities < universities.size(); kindOfUniversities++) {
             System.out.println(JsonUtil.jsonKindOfUniversities(universities, kindOfUniversities));
-
        }
 
         // соберем статистику по списку студентов:
 
         System.out.println("Cписок студентов со средней оценкой выше 4");
         ProcessingCollections.listSudentAvgScoreMoreFoure(students);
-
+        log.info("Statistics of students with an average grade above 4 was made successfully!");
         /*  Статистика по направлениям обучения:
             - Направление обучения.
             - Средний бал студентов.
@@ -117,22 +107,44 @@ final public class Main {
          */
         System.out.println("Статистика по направлениям обучения:");
         ArrayList<Statistics> statistics = new ArrayList<>();
-
         statistics = ProcessingCollections.StatisticOfStudyProfile(universities, students, statistics);
+        log.info("Statistics on areas of study was made successfully!");
 
         System.out.println(JsonUtil.jsonAllStatistics(statistics));  // сериализация элементов статистики
+        log.info("Serialization of the collection of statistics was made successfully!");
 
         statistics.stream()
                 .forEach(System.out::println);
 
         // Запись статистики в файл exe: C:\Users\100nout\Downloads\NewExcelFile.xls
         WriteFile.writeFile(statistics);
+        log.info("Statistics exe file created!");
 
         // Запись коллекций в файлы json
         WriteJSONFile.writeJSONFileUniversity(universities);
-        WriteJSONFile.writeJSONFileStudents(students);
-        WriteJSONFile.writeJSONFileStatistics(statistics);
+        log.info("Universities json file created!");
 
+        WriteJSONFile.writeJSONFileStudents(students);
+        log.info("Students json file created!");
+
+        WriteJSONFile.writeJSONFileStatistics(statistics);
+        log.info("Statistics json file created!");
+
+        System.out.println("Сериализация через общий метод");
+        log.info("Сериализация через общий метод");
+
+        ArrayList<E> collection = new ArrayList<E>();
+        collection = (ArrayList<E>) students;
+        System.out.println(JsonUtil.jsonAllCollection(collection));
+        log.info("Сериализация коллекции студентов через общий метод");
+
+        collection = (ArrayList<E>) universities;
+        System.out.println(JsonUtil.jsonAllCollection(collection));
+        log.info("Сериализация коллекции университетов через общий метод");
+
+        collection = (ArrayList<E>) statistics;
+        System.out.println(JsonUtil.jsonAllCollection(collection));
+        log.info("Сериализация коллекции статистики через общий метод");
 /*
         printMenuUniversity();
         enums.UniversitiesComparators myUniversityComparator = null;
