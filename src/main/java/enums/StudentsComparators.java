@@ -4,7 +4,7 @@ public enum StudentsComparators {
     AvgExamScoreComparator,
     CurrentCourseNumberComparator,
     FullNameComparator,
-    UniversityIdComparator;
+    UniversityIdComparator, allComparator, StudAvgExamScoreComparator;
     String studComparator;
 
     StudentsComparators() {}

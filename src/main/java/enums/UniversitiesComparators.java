@@ -5,7 +5,9 @@ public enum UniversitiesComparators {
     UniFullNameComparator,
     UniProfileNameComparator,
     UniShortNameComparator,
-    UniYearOfFoundationComparator;
+    UniYearOfFoundationComparator,
+
+    allComparator;
 
     String universitiesComparator;
 

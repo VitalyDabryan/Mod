@@ -10,8 +10,8 @@ import java.util.Collections;
 
 //утилитный класс, в котором реализовать два метода, принимающих на вход enum с типом компаратора,
 // определяющих и возвращающих необходимый из реализованных компараторов
-final public class SelectComparator {
-    static ArrayList<University> selectUniversitiesComparator(ArrayList<University> universities, UniversitiesComparators myUniversityComparator) {
+  public class SelectComparator {
+    public static ArrayList<University> selectUniversitiesComparator(ArrayList<University> universities, UniversitiesComparators myUniversityComparator) {
         if (myUniversityComparator == UniversitiesComparators.IdComparator) {
             Collections.sort(universities, new IdComparator());
         } else
@@ -30,7 +30,7 @@ final public class SelectComparator {
         return universities;
     }
 
-    static ArrayList <Student> selectStudentComparator(ArrayList<Student> students, StudentsComparators myStudentComparator) {
+    public static ArrayList <Student> selectStudentComparator(ArrayList<Student> students, StudentsComparators myStudentComparator) {
         if (myStudentComparator == StudentsComparators.UniversityIdComparator) {
             Collections.sort(students, new UniversityIdComparator());
         } else

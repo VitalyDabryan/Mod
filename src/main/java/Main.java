@@ -16,6 +16,7 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 final public class Main {
 
@@ -151,7 +152,7 @@ final public class Main {
         collection = (ArrayList<E>) statistics;
         System.out.println(JsonUtil.jsonAllCollection(collection));
         log.info("Сериализация коллекции статистики через общий метод");
-/*
+
         printMenuUniversity();
         enums.UniversitiesComparators myUniversityComparator = null;
 
@@ -206,9 +207,7 @@ final public class Main {
        System.out.println("Collection of universities:");
 
        if (myUniversityComparator != null) universities = allComparator.SelectComparator.selectUniversitiesComparator(universities, myUniversityComparator);
-//       for (Object o: universities) {
-//            System.out.println(o);
-//       }
+
         universities.stream()
                 .forEach(System.out::println);
 
@@ -261,10 +260,7 @@ final public class Main {
        if (myStudentComparator != null) students = allComparator.SelectComparator.selectStudentComparator(students, myStudentComparator);
        students.stream()
                 .forEach(System.out::println);
-//       for (model.Student student : students) {
-//            System.out.println(student);
-//       }
-*/
+
     }
 
 
